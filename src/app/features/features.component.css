@@ -1,0 +1,19 @@
+.wrapper.open .container {
+  margin-left: 80px;
+}
+
+.wrapper .container {
+  padding: 0.8rem 1rem;
+  min-height: 100vh;
+  width: 100%;
+  margin-left: 250px;
+  width: auto;
+  transition: 0.5s;
+  background: #f4faff;
+}
+
+@media (max-width: 768px) {
+  .wrapper .container {
+    margin-left: 0 !important;
+  }
+}

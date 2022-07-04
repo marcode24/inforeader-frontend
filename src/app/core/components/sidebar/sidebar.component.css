@@ -1,0 +1,244 @@
+nav {
+  position: fixed;
+  height: 100%;
+  width: 80px;
+  background: var(--bg-color);
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
+  padding: 0 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+nav.open {
+  width: 250px;
+}
+
+nav .logo-details {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  opacity: 1;
+}
+
+nav .logo-details .icon {
+  opacity: 0;
+  transition: all 0.5s;
+  color: var(--primary-color);
+}
+
+nav .logo-details .logo_name {
+  color: var(--primary-color);
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.5s;
+  flex-grow: 1;
+}
+
+nav.open .logo-details .icon,
+nav.open .logo-details .logo_name,
+nav.open .profile .profile-details img,
+nav.open .profile .profile-details .username {
+  opacity: 1;
+}
+
+nav .logo-details .toggled {
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: absolute;
+  width: 100%;
+}
+
+nav.open .logo-details .toggled,
+nav.open .profile .profile-details #log_out {
+  position: initial;
+}
+
+nav i {
+  color: var(--bg-color-secondary);
+  min-width: 60px;
+  font-size: 28px;
+  text-align: center;
+}
+
+nav .nav-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+nav li {
+  position: relative;
+  margin: 0;
+  list-style: none;
+  height: 55px;
+}
+
+nav li .tooltip {
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #f7f7f7;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+
+nav li:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transition: 0.5s;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+nav.open li .tooltip {
+  display: none;
+}
+
+nav li a {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: 0.5s ease;
+  background: transparent;
+}
+
+nav li a:hover {
+  background: #f7f7f7;
+}
+
+nav li a .links_name {
+  color: var(--bg-color-secondary);
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+nav.open li a .links_name {
+  opacity: 1;
+  pointer-events: auto;
+  transition: 0.4s;
+  font-weight: 400;
+}
+
+nav li a:hover .links_name,
+nav li a:hover i {
+  transition: all 0.5s ease;
+  /* color: var(--primary-color); */
+}
+
+nav li i {
+  font-size: 24px;
+  border-radius: 12px;
+}
+
+nav .profile {
+  width: 100%;
+  height: 60px;
+  opacity: 1;
+  padding: 0.2rem;
+  display: flex;
+  flex-grow: 1;
+  align-items: flex-end;
+}
+
+nav .profile .profile-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+nav .profile img {
+  height: 48px;
+  width: 48px;
+  min-height: 48px;
+  min-width: 48px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 5px;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+nav .profile .username {
+  flex-grow: 1;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--bg-color-secondary);
+  white-space: nowrap;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+nav .profile .job {
+  font-size: 12px;
+}
+
+nav .profile-details #log_out {
+  transition: all 0.5s;
+  position: absolute;
+}
+
+@media (max-width: 768px) {
+  nav {
+    width: 100vw !important;
+    height: auto;
+    bottom: 0;
+    transition: none;
+  }
+
+  nav .profile,
+  nav .logo-details {
+    opacity: 0;
+    display: none;
+  }
+
+  nav .nav-list {
+    flex-direction: row;
+    bottom: 0;
+    justify-content: space-evenly;
+  }
+  nav li .tooltip {
+    display: none;
+  }
+
+  nav li a {
+    min-width: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  nav li a i {
+    font-size: 22px;
+  }
+
+  nav li a .links_name {
+    font-size: 11px;
+    opacity: 1;
+  }
+}
