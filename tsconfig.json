@@ -24,6 +24,9 @@
     ],
     "paths": {
       "@components/*": [ "app/core/components/*" ],
+      "@interfaces/*": [ "app/core/interfaces/*" ],
+      "@models/*": [ "app/core/models/*" ],
+      "@services/*": [ "app/core/services/*" ],
     }
   },
   "angularCompilerOptions": {

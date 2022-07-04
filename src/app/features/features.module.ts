@@ -5,6 +5,7 @@ import { FeaturesComponent } from './features.component';
 import { RouterModule } from '@angular/router';
 
 import { ComponentsModule } from '@components/components.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ComponentsModule } from '@components/components.module';
   imports: [
     CommonModule,
     RouterModule,
-    ComponentsModule
+    ComponentsModule,
+    InfiniteScrollModule
   ]
 })
 export class FeaturesModule { }
