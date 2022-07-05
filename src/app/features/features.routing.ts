@@ -7,7 +7,12 @@ const routes: Routes = [
     path: '',
     component: FeaturesComponent,
     loadChildren: () => import('./home/home.routing').then(m => m.HomeRoutingModule),
-  }
+  },
+  {
+    path: 'feed',
+    component: FeaturesComponent,
+    loadChildren: () => import('./feed/feed.routing').then(m => m.UsersRoutingModule),
+  },
 ];
 
 @NgModule({

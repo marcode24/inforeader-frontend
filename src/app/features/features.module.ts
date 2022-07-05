@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { FeaturesComponent } from './features.component';
 import { RouterModule } from '@angular/router';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { ComponentsModule } from '@components/components.module';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+import { FeedModule } from './feed/feed.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     CommonModule,
     RouterModule,
     ComponentsModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    FeedModule
   ]
 })
 export class FeaturesModule { }

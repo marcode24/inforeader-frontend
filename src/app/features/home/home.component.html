@@ -2,7 +2,7 @@
   <section class="recently">
     <span class="title-section recently">Latest news</span>
     <div class="news">
-      <div class="card card-new" *ngFor="let feed of feeds">
+      <div class="card card-new" *ngFor="let feed of feeds" (click)="moreDetails(feed._id)">
         <figure *ngIf="feed.image">
           <img [src]="feed.image" alt="news-image" loading="lazy">
         </figure>

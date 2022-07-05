@@ -1,7 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IResponseFeed } from '@interfaces/response.interface';
 
 import { Feed } from '@models/feed.model';
+
 import { FeedService } from '@services/feed.service';
 
 @Component({
@@ -21,9 +23,11 @@ export class HomeComponent implements OnInit {
   private limit: number = 20;
 
   public feeds: Feed[] = [];
-  private feedsTemp: Feed[] = [];
 
-  constructor(private feedService: FeedService) { }
+  constructor(
+    private feedService: FeedService,
+    private router: Router,
+  ) { }
 
 
   ngOnInit(): void {
@@ -40,6 +44,12 @@ export class HomeComponent implements OnInit {
   scrollTop() {
     document.body.scrollTop = 0; // this is for Safari
     document.documentElement.scrollTop = 0; // for another one
+  }
+
+  moreDetails(id: string): void {
+    const recentFeeds = this.feeds.slice(0, 6);
+    this.feedService.setRecentsFeeds(recentFeeds);
+    this.router.navigate([`/feed/${id}`]);
   }
 
   @HostListener('window:scroll', [])

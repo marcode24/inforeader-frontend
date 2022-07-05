@@ -1,0 +1,34 @@
+<div class="feed-wrapper" *ngIf="feed">
+  <div class="card news-detail">
+    <img [src]="feed.image" class="banner" alt="">
+    <div class="content">
+      <span class="title-new">{{feed.title}}</span>
+      <div class="details">
+        <span class="detail">{{feed.writer}} &bull; {{feed.pubDate | date: 'dd/MM/yyyy, h:mm a' }}</span>
+        <div class="bookmark">
+          <i class="bx bx-bookmark"></i>
+        </div>
+      </div>
+      <div class="feed" [innerHTML]="feed.content | html">
+      </div>
+      <div class="details-website">
+        <a target="_blank" [href]="feed.link" class="original">View original new</a> &bull;
+        <a target="_blank" [href]="feed.website.link" class="website">by {{feed.website.name}}</a>
+      </div>
+    </div>
+  </div>
+  <div class="findings">
+    <div class="card card-findings">
+      <span class="card-title">Recents</span>
+      <div class="item" *ngFor="let recentFeed of recentsFeed">
+        <div class="item-content">
+          <span class="title">{{recentFeed.title | slice:0:35}}{{(recentFeed.title.length > 20)?'...':'' }}</span>
+          <span class="writer">{{recentFeed.writer}}</span>
+        </div>
+        <figure>
+          <img [src]="recentFeed.image" alt="new title">
+        </figure>
+      </div>
+    </div>
+  </div>
+</div>
