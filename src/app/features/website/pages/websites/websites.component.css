@@ -1,0 +1,101 @@
+.websites-wrapper {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.card.card-website {
+  display: flex;
+  margin: 1rem 0;
+  transition: 0.5s;
+}
+
+.card.card-website:hover {
+  cursor: pointer;
+  box-shadow: rgb(0 0 0 / 20%) 1px 1px 24px 1px;
+}
+
+.card.card-website figure {
+  width: 100%;
+  max-width: 15rem;
+  border-radius: 10px 0 0 10px;
+}
+
+.card.card-website figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.card.card-website .card-body {
+  display: flex;
+  padding: 1rem;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.card-body .w-title {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.card-body .w-desc {
+  font-size: 16px;
+  color: var(--font-color-secondary);
+}
+
+.card-body .bottom {
+  display: flex;
+  align-items: flex-end;
+  flex-grow: 1;
+  margin-top: 1rem;
+}
+
+.card-body .bottom .buttons {
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 5px;
+}
+
+.card-body .bottom .buttons .w-link {
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 16px;
+}
+
+.card-body .bottom .buttons .btn {
+  flex-grow: 1;
+  max-width: 10rem;
+}
+
+@media (max-width: 768px) {
+  .card.card-website {
+    flex-direction: column;
+  }
+
+  .card.card-website figure {
+    max-width: 100%;
+    height: 10rem;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .card-body .bottom .buttons .w-link {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .websites-wrapper {
+    max-width: 100%;
+  }
+}

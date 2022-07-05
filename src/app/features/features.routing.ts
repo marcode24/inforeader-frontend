@@ -13,6 +13,11 @@ const routes: Routes = [
     component: FeaturesComponent,
     loadChildren: () => import('./feed/feed.routing').then(m => m.UsersRoutingModule),
   },
+  {
+    path: 'websites',
+    component: FeaturesComponent,
+    loadChildren: () => import('./website/website.routing').then(m => m.WebsiteRoutingModule),
+  },
 ];
 
 @NgModule({

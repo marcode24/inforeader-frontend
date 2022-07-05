@@ -1,3 +1,4 @@
+import { Website } from "@models/website.model";
 import { Feed } from "../models/feed.model";
 
 export interface IResponseFeed {
@@ -6,3 +7,8 @@ export interface IResponseFeed {
   feed: Feed;
   msg?: string;
 };
+
+export interface IResponseWebsite {
+  ok: boolean,
+  websites: Website[];
+}

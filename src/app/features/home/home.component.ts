@@ -3,8 +3,11 @@ import { Router } from '@angular/router';
 import { IResponseFeed } from '@interfaces/response.interface';
 
 import { Feed } from '@models/feed.model';
+import { Website } from '@models/website.model';
 
 import { FeedService } from '@services/feed.service';
+import { WebsiteService } from '@services/website.service';
+import { forkJoin, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -23,22 +26,44 @@ export class HomeComponent implements OnInit {
   private limit: number = 20;
 
   public feeds: Feed[] = [];
+  public websites: Website[] = [];
 
   constructor(
     private feedService: FeedService,
+    private websiteService: WebsiteService,
     private router: Router,
   ) { }
 
 
   ngOnInit(): void {
-    this.feedService.getFeeds(this.skip, this.limit).subscribe((resp: IResponseFeed) => {
-      this.feeds = [...this.feeds, ...resp.feeds];
+    this.getDataInitial();
+  }
+
+  getDataInitial() {
+    forkJoin({
+      feeds: this.getFeeds(),
+      websites: this.websiteService.getWebsites(),
+    }).subscribe({
+      next: ({ feeds, websites }) => {
+        this.feeds = feeds;
+        this.websites = websites;
+        console.log(this.feeds, this.websites);
+      },
+      error: (e) => {
+        console.log(e);
+      }
     })
+  }
+
+  getFeeds(): Observable<Feed[]> {
+    return this.feedService.getFeeds(this.skip, this.limit).pipe(map(resp => resp.feeds));
   }
 
   onScroll() {
     this.skip += this.limit;
-    this.ngOnInit();
+    this.getFeeds().subscribe(feeds => {
+      this.feeds = [...this.feeds, ...feeds];
+    })
   }
 
   scrollTop() {

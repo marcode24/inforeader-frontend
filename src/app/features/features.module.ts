@@ -8,6 +8,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ComponentsModule } from '@components/components.module';
 
 import { FeedModule } from './feed/feed.module';
+import { WebsiteModule } from './website/website.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FeedModule } from './feed/feed.module';
     RouterModule,
     ComponentsModule,
     InfiniteScrollModule,
-    FeedModule
+    FeedModule,
+    WebsiteModule
   ]
 })
 export class FeaturesModule { }

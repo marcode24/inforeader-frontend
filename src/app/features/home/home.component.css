@@ -106,6 +106,7 @@
   padding: 0.5rem 0.8rem;
   gap: 5px;
   transition: 0.4s;
+  align-items: center;
 }
 
 .card.card-websites .item:hover,
@@ -123,11 +124,11 @@
 
 .card.card-websites .item .item-content .website-name {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .card.card-websites .item .item-content .description {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 300;
 }
 
