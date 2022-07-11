@@ -9,6 +9,7 @@ import { ComponentsModule } from '@components/components.module';
 
 import { FeedModule } from './feed/feed.module';
 import { WebsiteModule } from './website/website.module';
+import { AuthModule } from 'app/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { WebsiteModule } from './website/website.module';
     ComponentsModule,
     InfiniteScrollModule,
     FeedModule,
-    WebsiteModule
+    WebsiteModule,
+    AuthModule
   ]
 })
 export class FeaturesModule { }

@@ -28,6 +28,8 @@
       "@interfaces/*": [ "app/core/interfaces/*" ],
       "@models/*": [ "app/core/models/*" ],
       "@services/*": [ "app/core/services/*" ],
+      "@utils/*": [ "app/core/utils/*" ],
+      "@interceptors/*": [ "app/core/interceptors/*" ],
     }
   },
   "angularCompilerOptions": {

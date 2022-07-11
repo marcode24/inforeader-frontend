@@ -1,3 +1,4 @@
+import { User } from "@models/user.model";
 import { Website } from "@models/website.model";
 import { Feed } from "../models/feed.model";
 
@@ -12,3 +13,9 @@ export interface IResponseWebsite {
   ok: boolean,
   websites: Website[];
 }
+
+export interface IResponseLogin {
+  ok: true,
+  token: string,
+  user: User,
+};

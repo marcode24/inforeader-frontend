@@ -7,6 +7,16 @@
   scroll-behavior: smooth;
 }
 
+*:focus {
+  outline: none;
+}
+
+body.modal-open {
+  height: 100vh;
+  overflow: hidden;
+  padding-right: 15px;
+}
+
 :root {
   --primary-color: #0098fa;
   --secondary-color: #e66d9b;
@@ -63,9 +73,8 @@
   border: 1px solid transparent;
   padding: 0 1rem;
   font-size: 14px;
-  border-radius: 20px;
+  border-radius: 8px;
   color: #fff;
-  max-width: 400px;
   width: fit-content;
   font-weight: bold;
   height: 40px;
@@ -76,4 +85,86 @@
 .btn.btn-primary {
   background-color: var(--primary-color);
   border: none;
+}
+
+.btn.btn-lg {
+  height: 50px;
+  font-size: 18px;
+}
+
+label.floating {
+  position: relative;
+}
+
+label.floating:hover {
+  cursor: text;
+}
+
+label.floating input {
+  background: transparent;
+  /* border-style: none; */
+  border: 1px solid #71767b;
+  border-radius: 8px;
+  height: 54px;
+  width: 100%;
+  padding: 20px 10px 5px 10px;
+  font-size: 16px;
+  transition: 0.2s;
+}
+label.floating input::placeholder {
+  opacity: 0;
+}
+label.floating span {
+  color: #71767b;
+  position: absolute;
+  top: -15px;
+  left: 9px;
+  transform: translateY(30px);
+  font-size: 16px;
+  width: 95%;
+  transition-duration: 0.2s;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+label.floating:focus-within > span,
+input:not(:placeholder-shown) + span {
+  color: var(--primary-color);
+  transform: translateY(0px);
+  font-size: 12px;
+  top: 7px;
+}
+
+label.floating:not(:focus-within) > span {
+  color: #71767b;
+}
+
+input:focus,
+input:focus-within {
+  border: 1px solid var(--primary-color) !important;
+}
+
+.divisor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.2rem 0;
+}
+
+.divisor .line {
+  height: 1px;
+  background: #71767b;
+  flex: 1;
+}
+
+.divisor span {
+  color: #71767b;
+  font-size: 15px;
+  margin: 0 10px;
+  font-weight: 300;
+}
+
+.error {
+  color: var(--secondary-color);
 }

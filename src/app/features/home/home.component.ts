@@ -4,6 +4,7 @@ import { IResponseFeed } from '@interfaces/response.interface';
 
 import { Feed } from '@models/feed.model';
 import { Website } from '@models/website.model';
+import { AuthService } from '@services/auth.service';
 
 import { FeedService } from '@services/feed.service';
 import { WebsiteService } from '@services/website.service';
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private feedService: FeedService,
     private websiteService: WebsiteService,
+    private authService: AuthService,
     private router: Router,
   ) { }
 
@@ -83,6 +85,15 @@ export class HomeComponent implements OnInit {
       this.showGoUpButton = true;
     } else if ( this.showGoUpButton && (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) < this.hideScrollHeight) {
       this.showGoUpButton = false;
+    }
+  }
+
+  saveFeed(id: string){
+    const isAuth = this.authService.isAuthenticated();
+    if(!isAuth) {
+      console.log('no esta logeado');
+    } else {
+      console.log('si esta');
     }
   }
 

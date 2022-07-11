@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { User } from '@models/user.model';
+import { AuthService } from '@services/auth.service';
 
 
 @Component({
@@ -9,7 +11,12 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit, AfterViewInit {
   private sidebar: any;
   private wrapper: any;
-  constructor() { }
+  public userActive: User;
+  constructor(
+    private authService: AuthService,
+  ) {
+    this.userActive = authService.getUserActive;
+  }
 
   ngAfterViewInit(): void {
     this.sidebar = document.querySelector('.sidebar');
@@ -17,10 +24,20 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.authService.isAuthenticatedEmitter.subscribe(resp => {
+      if(resp) {
+        this.setUserInfoActive();
+      }
+    });
   }
 
+  setUserInfoActive(): void {
+    this.userActive = this.authService.getUserActive;
+    console.log(this.userActive);
+  }
 
   toggled(element: any) {
+    console.log(this.userActive);
     this.sidebar?.classList.toggle('open');
     this.wrapper.classList.toggle('open');
     console.log(this.sidebar);

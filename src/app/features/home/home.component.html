@@ -2,13 +2,14 @@
   <section class="recently">
     <span class="title-section recently">Latest news</span>
     <div class="news">
-      <div class="card card-new" *ngFor="let feed of feeds" (click)="moreDetails(feed._id)">
+      <!-- <div class="card card-new" *ngFor="let feed of feeds" (click)="moreDetails(feed._id)"> -->
+      <div class="card card-new" *ngFor="let feed of feeds">
         <figure *ngIf="feed.image">
           <img [src]="feed.image" alt="news-image" loading="lazy">
         </figure>
         <div class="card-body">
           <span class="new-title">{{feed.title | slice:0:(feed.image) ? 50: 100}}{{(feed.title.length > 20)?'...':'' }}
-            <i class="bx bx-bookmark"></i></span>
+            <i class="bx bx-bookmark" (click)="saveFeed(feed._id)"></i></span>
           <!-- <p class="description">Esta es una descripcion de ejemplo...</p> -->
           <p class="date">
             {{ feed.pubDate | date: 'dd/MM/yyyy, h:mm a' }} &bull; by

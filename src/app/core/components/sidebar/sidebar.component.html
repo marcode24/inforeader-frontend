@@ -34,12 +34,12 @@
       <span class="tooltip">Configuration</span>
     </li>
   </ul>
-  <div class="profile">
+  <div class="profile" *ngIf="userActive">
     <div class="profile-details">
       <img
         src="https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=789&q=80"
         alt="profileImg">
-      <span class="username"> userfadsname </span>
+      <span class="username"> {{userActive.email | slice:0:12}} </span>
       <i class='bx bx-log-out' id="log_out"></i>
     </div>
   </div>
