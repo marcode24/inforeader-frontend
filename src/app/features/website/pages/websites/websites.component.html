@@ -1,19 +1,25 @@
-<div class="websites-wrapper" *ngIf="websites">
+<div class="websites-section" *ngIf="websites">
 
-  <span class="title">Websites availables</span>
-  <div class="card card-website" *ngFor="let website of websites">
-    <figure>
-      <img [src]="website.image" alt="website-image" onerror="this.src='/assets/images/not-found-image.jpg'">
-    </figure>
-    <div class="card-body">
-      <span class="w-title">{{website.name}}</span>
-      <p class="w-desc">{{website.description}}</p>
-      <div class="bottom">
-        <div class="buttons">
-          <button class="btn btn-primary">Subscribe</button>
+  <section class="websites-wrapper">
+    <div class="title-wrapper">
+      <span class="title">Websites availables</span>
+    </div>
+    <div class="card card-website" *ngFor="let website of websites">
+      <figure>
+        <img [src]="website.image" alt="website-image" onerror="this.src='/assets/images/not-found-image.jpg'">
+      </figure>
+      <div class="card-body">
+        <div class="website-title">
+          <span class="title">{{website.name}}</span>
+          <button (click)="subscribeWebsite(website._id)" [class.btn-following]="website.inUser"
+            class="btn btn-primary btn-subscribe">{{ (website.inUser) ?
+            'Following' : 'Subscribe' }}</button>
+        </div>
+        <p class="w-desc">{{website.description}}</p>
+        <div class="link">
           <a [href]="website.link" target="_blank" class="w-link">View original site</a>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </div>

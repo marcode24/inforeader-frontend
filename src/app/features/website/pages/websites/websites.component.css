@@ -1,6 +1,19 @@
-.websites-wrapper {
-  max-width: 70%;
+.websites-section {
+  display: grid;
+  grid-template-columns: auto 300px;
+  gap: 0.5rem;
+  max-width: 1000px;
   margin: 0 auto;
+}
+
+.title-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  z-index: 99;
+  height: 50px;
 }
 
 .title {
@@ -12,17 +25,20 @@
   display: flex;
   margin: 1rem 0;
   transition: 0.5s;
+  padding: 1rem;
 }
 
 .card.card-website:hover {
-  cursor: pointer;
+  cursor: default;
   box-shadow: rgb(0 0 0 / 20%) 1px 1px 24px 1px;
 }
 
 .card.card-website figure {
-  width: 100%;
-  max-width: 15rem;
-  border-radius: 10px 0 0 10px;
+  width: 4rem;
+  min-width: 4rem;
+  height: 4rem;
+  min-height: 4rem;
+  border-radius: 50%;
 }
 
 .card.card-website figure img {
@@ -34,14 +50,26 @@
 
 .card.card-website .card-body {
   display: flex;
-  padding: 1rem;
+  padding: 0 0.5rem 0 1rem;
   flex-grow: 1;
   flex-direction: column;
+  gap: 10px;
 }
 
-.card-body .w-title {
+.card-body .website-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-body .website-title .title {
   font-size: 26px;
   font-weight: bold;
+}
+
+.card-body .website-title .btn {
+  border-radius: 40px;
+  max-width: 100px;
 }
 
 .card-body .w-desc {
@@ -49,33 +77,16 @@
   color: var(--font-color-secondary);
 }
 
-.card-body .bottom {
-  display: flex;
-  align-items: flex-end;
-  flex-grow: 1;
-  margin-top: 1rem;
-}
-
-.card-body .bottom .buttons {
-  flex-wrap: wrap;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  gap: 5px;
-}
-
-.card-body .bottom .buttons .w-link {
-  display: flex;
-  align-items: flex-end;
-  text-decoration: none;
+.card-body .link a.w-link {
   color: var(--primary-color);
   font-size: 16px;
+  text-decoration: none;
+  transition: 0.5s ease;
 }
 
-.card-body .bottom .buttons .btn {
-  flex-grow: 1;
-  max-width: 10rem;
+.card-body .link a.w-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
