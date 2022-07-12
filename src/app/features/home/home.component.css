@@ -10,6 +10,8 @@
   display: grid;
   grid-template-columns: auto 300px;
   gap: 0.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .home-section .websites {
@@ -18,7 +20,7 @@
 
 .home-section .recently .news {
   display: grid;
-  grid-template-columns: repeat(2, 50%);
+  grid-template-columns: repeat(1, 100%);
 }
 
 .card.card-new {
@@ -30,7 +32,6 @@
 }
 
 .card.card.card-new:hover {
-  cursor: pointer;
   box-shadow: rgb(0 0 0 / 20%) 1px 1px 24px 1px;
 }
 
@@ -55,16 +56,29 @@
   padding: 10px;
 }
 
-.card.card-new .card-body .new-title {
-  font-size: 24px;
-  font-weight: bold;
+.card.card-new .card-body .title-wrapper {
   display: flex;
   justify-content: space-between;
+  font-size: 24px;
 }
 
-.card.card-new .card-body .new-title i {
+.card.card-new .card-body .title-wrapper .new-title {
+  font-weight: bold;
+}
+
+.card.card-new .card-body .title-wrapper .new-title:hover {
+  text-decoration: underline;
+}
+
+.card.card-new .card-body .title-wrapper .new-title:hover,
+.card.card-new .card-body .title-wrapper .save {
+  cursor: pointer;
+}
+
+.card.card-new .card-body .title-wrapper .save {
   color: var(--primary-color);
-  margin-top: 7px;
+  margin-top: 5px;
+  z-index: 10;
 }
 
 .card.card.card-new .card-body .date {
@@ -161,6 +175,19 @@
   border-radius: 10px;
 }
 
+.btn-top {
+  z-index: 99;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  height: 3.5rem;
+  width: 3.5rem;
+  transition: 0.5s;
+  border-radius: 50%;
+  font-size: 24px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 @media (max-width: 1200px) {
   .home-section .recently .news {
     grid-template-columns: repeat(1, 100%);
@@ -173,6 +200,11 @@
   }
   .home-section .websites {
     opacity: 0;
+  }
+
+  .btn-top {
+    bottom: 80px;
+    right: 20px;
   }
 }
 

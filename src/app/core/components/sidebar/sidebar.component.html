@@ -1,23 +1,22 @@
 <nav class="sidebar open">
   <div class="logo-details">
     <i class='bx bx-news icon'></i>
-    <div class="logo_name">InfoReader</div>
-    <i class='bx bx-menu toggled' #bxMenuIcon (click)="toggled(bxMenuIcon)"></i>
+    <span class="logo_name">InfoReader</span>
   </div>
   <ul class="nav-list">
     <li>
-      <a href="#">
-        <i class='bx bx-world'></i>
+      <a (click)="changeExplore(true)">
+        <i class='bx bx-news'></i>
         <span class="links_name">News</span>
       </a>
       <span class="tooltip">News</span>
     </li>
     <li>
-      <a href="#">
-        <i class='bx bx-star'></i>
-        <span class="links_name">Preferences</span>
+      <a (click)="changeExplore(false)">
+        <i class='bx bx-world'></i>
+        <span class="links_name">Explore</span>
       </a>
-      <span class="tooltip">Preferences</span>
+      <span class="tooltip">Explore</span>
     </li>
     <li>
       <a href="#">
@@ -36,11 +35,15 @@
   </ul>
   <div class="profile" *ngIf="userActive">
     <div class="profile-details">
-      <img
-        src="https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=789&q=80"
-        alt="profileImg">
-      <span class="username"> {{userActive.email | slice:0:12}} </span>
-      <i class='bx bx-log-out' id="log_out"></i>
+      <figure class="box-image">
+        <img
+          src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+          alt="img-user">
+      </figure>
+      <span class="username"> {{userActive.email }} </span>
+      <a href="" class="more">
+        <i class='bx bx-dots-horizontal-rounded'></i>
+      </a>
     </div>
   </div>
 

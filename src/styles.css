@@ -11,6 +11,10 @@
   outline: none;
 }
 
+body {
+  background: #f4faff;
+}
+
 body.modal-open {
   height: 100vh;
   overflow: hidden;

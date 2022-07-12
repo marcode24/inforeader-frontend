@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of, Subject, tap } from 'rxjs';
 import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -16,7 +16,7 @@ const base_url = environment.base_url;
 export class AuthService {
 
   private userActive: User;
-  public isAuthenticatedEmitter: EventEmitter<boolean> = new EventEmitter();
+  public isAuthenticatedEmitter: Subject<boolean> = new Subject();
 
   constructor(
     private http: HttpClient,
@@ -30,14 +30,14 @@ export class AuthService {
     };
   }
 
-  isAuthenticated() {
+  isAuthenticated(): boolean {
     const isAuth = (this.userActive) ? true : false;
     this.emitUserAuthenticated(isAuth);
     return isAuth;
   }
 
   emitUserAuthenticated(isAuth: boolean): void {
-    this.isAuthenticatedEmitter.emit(isAuth);
+    this.isAuthenticatedEmitter.next(isAuth);
   }
 
   get getUserActive(): User {
@@ -52,7 +52,7 @@ export class AuthService {
     }));
   }
 
-  validateToken(): Observable<boolean> {
+  validateToken() {
     const url = `${base_url}/auth/renew`;
     return this.http.get<IResponseLogin>(url, this.headers).pipe(map(resp => {
       this.setUserActiveInfo(resp);

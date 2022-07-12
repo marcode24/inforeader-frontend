@@ -5,13 +5,13 @@
   right: 0;
   bottom: 0;
   left: 0;
-  transition: 0.5s;
   opacity: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
 .modal.modal-open {
+  display: flex;
   opacity: 1;
   position: fixed;
 }
@@ -50,4 +50,12 @@
   background-color: #ffffff;
   padding: 1rem;
   gap: 1.2rem;
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    border-radius: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+  }
 }

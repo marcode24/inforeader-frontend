@@ -1,14 +1,13 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IResponseFeed } from '@interfaces/response.interface';
+import { forkJoin, map, Observable, Subscription } from 'rxjs';
 
 import { Feed } from '@models/feed.model';
 import { Website } from '@models/website.model';
-import { AuthService } from '@services/auth.service';
 
+import { AuthService } from '@services/auth.service';
 import { FeedService } from '@services/feed.service';
 import { WebsiteService } from '@services/website.service';
-import { forkJoin, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -24,10 +23,19 @@ export class HomeComponent implements OnInit {
   private hideScrollHeight = 200;
 
   private skip: number = 0;
-  private limit: number = 20;
+  private limit: number = 10;
 
   public feeds: Feed[] = [];
   public websites: Website[] = [];
+
+  private isAuthenticated: boolean = false;
+  private activeSubscriptions: Subscription;
+
+
+  changeStyle(element: any, change: boolean){
+    if(change) element.classList.add('bxs-bookmark');
+    else element.classList.remove('bxs-bookmark')
+  }
 
   constructor(
     private feedService: FeedService,
@@ -36,9 +44,20 @@ export class HomeComponent implements OnInit {
     private router: Router,
   ) { }
 
-
   ngOnInit(): void {
-    this.getDataInitial();
+    this.authService.validateToken().subscribe(resp => {
+      this.isAuthenticated = resp;
+      this.getDataInitial();
+    });
+
+    this.activeSubscriptions = this.feedService.changeNews.subscribe(value => {
+      if(!value && this.isAuthenticated) {
+        this.isAuthenticated = value;
+      }
+      this.scrollTop();
+      this.skip = 0;
+      this.getDataInitial();
+    })
   }
 
   getDataInitial() {
@@ -49,21 +68,18 @@ export class HomeComponent implements OnInit {
       next: ({ feeds, websites }) => {
         this.feeds = feeds;
         this.websites = websites;
-        console.log(this.feeds, this.websites);
-      },
-      error: (e) => {
-        console.log(e);
       }
     })
   }
 
   getFeeds(): Observable<Feed[]> {
-    return this.feedService.getFeeds(this.skip, this.limit).pipe(map(resp => resp.feeds));
+    return this.feedService.getFeeds(this.skip, this.limit, this.isAuthenticated).pipe(map(resp => resp.feeds));
   }
 
   onScroll() {
     this.skip += this.limit;
     this.getFeeds().subscribe(feeds => {
+      console.log({feeds});
       this.feeds = [...this.feeds, ...feeds];
     })
   }
@@ -89,8 +105,8 @@ export class HomeComponent implements OnInit {
   }
 
   saveFeed(id: string){
-    const isAuth = this.authService.isAuthenticated();
-    if(!isAuth) {
+    this.isAuthenticated = this.authService.isAuthenticated();
+    if(!this.isAuthenticated) {
       console.log('no esta logeado');
     } else {
       console.log('si esta');

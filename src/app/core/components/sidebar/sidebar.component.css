@@ -1,20 +1,18 @@
 nav {
   position: fixed;
   height: 100%;
-  width: 80px;
-  background: var(--bg-color);
+  width: 250px;
+  /* background: var(--bg-color); */
+  border-right: 1px solid var(--bg-color);
   padding: 6px 14px;
   z-index: 99;
-  transition: all 0.5s ease;
-  padding: 0 0.6rem;
+  transition: 0.5s ease;
+  padding: 0 0.2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-}
-
-nav.open {
-  width: 250px;
+  /* border: 1px solid black; */
 }
 
 nav .logo-details {
@@ -27,38 +25,30 @@ nav .logo-details {
 }
 
 nav .logo-details .icon {
-  opacity: 0;
-  transition: all 0.5s;
+  opacity: 1;
+  transition: 0.5s;
   color: var(--primary-color);
 }
 
-nav .logo-details .logo_name {
+nav .logo-details span.logo_name {
   color: var(--primary-color);
   font-size: 20px;
   font-weight: 600;
-  opacity: 0;
-  transition: all 0.5s;
-  flex-grow: 1;
-}
-
-nav.open .logo-details .icon,
-nav.open .logo-details .logo_name,
-nav.open .profile .profile-details img,
-nav.open .profile .profile-details .username {
   opacity: 1;
+  transition: 0.5s;
+  flex-grow: 1;
 }
 
 nav .logo-details .toggled {
   font-size: 23px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.5s ease;
+  transition: 0.5s ease;
   position: absolute;
   width: 100%;
 }
 
-nav.open .logo-details .toggled,
-nav.open .profile .profile-details #log_out {
+nav.open .logo-details .toggled {
   position: initial;
 }
 
@@ -115,32 +105,27 @@ nav li a {
   display: flex;
   height: 100%;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 40px;
   align-items: center;
   text-decoration: none;
   transition: 0.5s ease;
   background: transparent;
 }
 
-nav li a:hover {
-  background: #f7f7f7;
+nav li a:hover,
+.profile .profile-details:hover {
+  background: #e2e2e2;
 }
 
 nav li a .links_name {
   color: var(--bg-color-secondary);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transition: 0.4s;
-}
-
-nav.open li a .links_name {
   opacity: 1;
-  pointer-events: auto;
-  transition: 0.4s;
-  font-weight: 400;
 }
 
 nav li a:hover .links_name,
@@ -155,51 +140,100 @@ nav li i {
 
 nav .profile {
   width: 100%;
-  height: 60px;
-  opacity: 1;
   padding: 0.2rem;
   display: flex;
   flex-grow: 1;
   align-items: flex-end;
 }
 
-nav .profile .profile-details {
+.profile .profile-details {
   display: flex;
   align-items: center;
-  flex-wrap: nowrap;
+  border-radius: 40px;
+  padding: 0.7rem;
+  cursor: pointer;
+  transition: 0.3s;
   width: 100%;
-  margin-bottom: 10px;
+  transition: 0.5s;
 }
 
-nav .profile img {
-  height: 48px;
-  width: 48px;
-  min-height: 48px;
-  min-width: 48px;
+.profile-details .box-image {
+  width: 3rem;
+  height: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
+}
+
+.profile-details img {
+  border-radius: 50%;
   object-fit: cover;
-  border-radius: 10px;
-  margin: 0 5px;
-  opacity: 0;
-  transition: 0.4s;
+  width: 100%;
+  height: 100%;
 }
 
-nav .profile .username {
+.profile-details .username {
+  margin: 0 5px;
   flex-grow: 1;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
   color: var(--bg-color-secondary);
   white-space: nowrap;
-  opacity: 0;
+  opacity: 1;
   transition: 0.4s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-nav .profile .job {
-  font-size: 12px;
+.profile a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  opacity: 1;
 }
 
-nav .profile-details #log_out {
-  transition: all 0.5s;
-  position: absolute;
+.profile-details a i {
+  min-width: 0;
+  font-size: 24px;
+}
+
+@media (max-width: 1280px) {
+  nav {
+    width: 80px;
+  }
+
+  nav .logo-details .logo_name,
+  nav li a .links_name,
+  .profile-details .username,
+  .profile a {
+    opacity: 0;
+    display: none;
+  }
+
+  nav li a .links_name {
+    pointer-events: auto;
+    transition: 0.4s;
+    font-weight: 400;
+  }
+
+  nav .logo-details i,
+  nav li a i {
+    flex-grow: 1;
+  }
+
+  nav .profile,
+  .profile-details {
+    justify-content: center;
+  }
+
+  .profile-details {
+    padding: 0.3rem !important;
+    width: auto !important;
+  }
+
+  .profile-details .box-image {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {
@@ -208,6 +242,7 @@ nav .profile-details #log_out {
     height: auto;
     bottom: 0;
     transition: none;
+    background: var(--bg-color);
   }
 
   nav .profile,
@@ -233,7 +268,8 @@ nav .profile-details #log_out {
   }
 
   nav li a i {
-    font-size: 22px;
+    font-size: 24px;
+    flex-grow: 0;
   }
 
   nav li a .links_name {
