@@ -1,48 +1,10 @@
-<div class="home-section" infiniteScroll [infiniteScrollDistance]="1" (scrolled)="onScroll()" *ngIf="feeds">
+<div class="home-section" *ngIf="feeds">
   <section class="recently">
     <span class="title-section recently">Latest news</span>
-    <div class="news">
-      <div class="card card-new" *ngFor="let feed of feeds; let i = index">
-        <!-- <div class="card card-new" *ngFor="let feed of feeds"> -->
-        <figure *ngIf="feed.image">
-          <img [src]="feed.image" alt="news-image" loading="lazy">
-        </figure>
-        <div class="card-body">
-          <div class="title-wrapper">
-            <a (click)="moreDetails(feed._id)" class="new-title"> {{feed.title | slice:0:(feed.image) ? 50:
-              100}}{{(feed.title.length >
-              20)?'...':''
-              }}</a>
-            <a class="save" (click)="saveFeed(feed._id)">
-              <i class="bx bx-bookmark" #iconi (mouseover)="changeStyle(iconi, true)"
-                (mouseout)="changeStyle(iconi, false)"></i>
-            </a>
-          </div>
-          <p class="date">
-            {{ feed.pubDate | date: 'dd/MM/yyyy, h:mm a' }} &bull; by
-            <span>{{ feed.website.name }}</span>
-          </p>
-        </div>
-      </div>
-    </div>
+    <app-news-container [feeds]="feeds" (moreItems)="onScroll()"></app-news-container>
   </section>
   <section class="websites" *ngIf="websites">
-    <div class="card card-websites">
-      <span class="card-title">Websites availables</span>
-      <div class="item" *ngFor="let website of websites">
-        <div class="item-content">
-          <span class="website-name">{{website.name}}</span>
-          <p class="description">{{website.description | slice:0:(website.image) ? 35:
-            80}}{{(website.description.length > 20)?'...':'' }}</p>
-        </div>
-        <figure *ngIf="website.image && website.image.length > 0">
-          <img [src]="website.image" alt="website-image" onerror="this.src='/assets/images/not-found-image.jpg'">
-        </figure>
-      </div>
-      <div class="more">
-        <a href="">Show more...</a>
-      </div>
-    </div>
+    <app-websites-card [websites]="websites" *ngIf="websites"></app-websites-card>
   </section>
   <button *ngIf="showGoUpButton" class="btn btn-primary btn-top" (click)="scrollTop()">
     <i class='bx bx-up-arrow-alt'></i>

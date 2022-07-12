@@ -6,6 +6,7 @@ import { map, Observable, Subject } from 'rxjs';
 import { IResponseFeed } from '@interfaces/response.interface';
 import { Feed } from '@models/feed.model';
 import Storage from '@utils/storage.util';
+import { AuthService } from './auth.service';
 
 const base_url = environment.base_url;
 
@@ -17,7 +18,10 @@ export class FeedService {
   private recentFeeds: Feed[];
   public changeNews: Subject<boolean> = new Subject();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+  ) { }
 
   public changeToExplore(value: boolean): void{
     this.changeNews.next(value);
@@ -39,20 +43,33 @@ export class FeedService {
     this.recentFeeds = feeds;
   }
 
-  getFeeds(skip = 0, limit = 10, isAuthenticated: boolean = false): Observable<IResponseFeed> {
-    let url: string;
-    if(!isAuthenticated) {
-      url = `${base_url}/feed?skip=${skip}&limit=${limit}`;
-      return this.http.get<IResponseFeed>(url);
-    } else {
-      url = `${base_url}/feed/byUser/subscription`;
-      return this.http.get<IResponseFeed>(url, this.headers);
-    }
+  getFeeds(skip = 0, limit = 10, isAuthenticated: boolean = false): Observable<Feed[]> {
+
+    const url = (!isAuthenticated) ?
+    `${base_url}/feed?skip=${skip}&limit=${limit}` :
+    `${base_url}/feed/byUser/subscription?skip=${skip}&limit=${limit}`;
+    const headers = !isAuthenticated ? {} : this.headers;
+    return this.http.get<IResponseFeed>(url, headers).pipe(map(resp => this.mapInUserResource(resp.feeds)));
+
   }
 
   getFeed(id: string): Observable<Feed> {
     const url = `${base_url}/feed/${id}`;
     return this.http.get<IResponseFeed>(url).pipe(map((resp) => resp.feed));
+  }
+
+  getSavedFeeds(skip = 0, limit = 10): Observable<Feed[]> {
+    const url = `${base_url}/feed/byUser/saved?skip=${skip}&limit=${limit}`;
+    return this.http.get<IResponseFeed>(url, this.headers).pipe(map((resp) => this.mapInUserResource(resp.feeds)));
+  }
+
+  private mapInUserResource(feeds: Feed[]): Feed[] {
+    const userActive = this.authService.getUserActive;
+    if(userActive) {
+      const { savedFeeds } = userActive;
+      feeds.map(feed => feed.inUser = savedFeeds?.includes(feed._id));
+    }
+    return feeds;
   }
 
 }

@@ -10,5 +10,6 @@ export class Feed {
     public link: string,
     public image: string,
     public website: Website,
+    public inUser?: boolean,
   ) {};
 };

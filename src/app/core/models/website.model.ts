@@ -5,5 +5,7 @@ export class Website {
     public description: string,
     public link: string,
     public linkFeed: string,
+    public _id: string,
+    public inUser?: boolean,
   ) {};
 };

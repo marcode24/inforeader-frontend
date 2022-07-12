@@ -10,8 +10,8 @@ export class User {
     public lastName?: string,
     public image?: string,
     public password?: string,
-    public subscriptions?: Website[],
-    public readFeeds?: Website[],
-    public savedFeeds?: Website[],
+    public subscriptions?: string[],
+    public readFeeds?: string[],
+    public savedFeeds?: string[],
   ) {}
 }

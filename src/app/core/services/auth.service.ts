@@ -56,6 +56,7 @@ export class AuthService {
     const url = `${base_url}/auth/renew`;
     return this.http.get<IResponseLogin>(url, this.headers).pipe(map(resp => {
       this.setUserActiveInfo(resp);
+      console.log(resp);
       return true;
     }), catchError(err => of(false)));
   }

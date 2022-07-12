@@ -30,6 +30,7 @@
       "@services/*": [ "app/core/services/*" ],
       "@utils/*": [ "app/core/utils/*" ],
       "@interceptors/*": [ "app/core/interceptors/*" ],
+      "@guards/*": [ "app/core/guards/*" ],
     }
   },
   "angularCompilerOptions": {
