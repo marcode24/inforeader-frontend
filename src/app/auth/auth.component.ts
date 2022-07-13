@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
@@ -15,6 +15,8 @@ export class AuthComponent implements OnInit, OnDestroy {
   private bodyElement = document.body as HTMLBodyElement;
   public showLogin: boolean = true;
 
+  private modalOpen: boolean = false;
+
   constructor(private authService: AuthService) {}
 
   ngOnDestroy(): void {
@@ -28,15 +30,24 @@ export class AuthComponent implements OnInit, OnDestroy {
   openModal(): void {
     this.bodyElement.classList.add('modal-open');
     this.modalAuth.nativeElement.classList.add('modal-open');
+    this.modalOpen = true;
   }
 
   closeModal(): void {
     this.bodyElement.classList.remove('modal-open');
     this.modalAuth.nativeElement.classList.remove('modal-open');
+    this.modalOpen = false;
   }
 
   changePage(show: boolean) {
     this.showLogin = show;
   }
+
+  @HostListener('window:keyup.esc', ['$event'])
+  onKeyup(event: any) {
+    if(this.modalOpen) {
+        this.closeModal();
+      }
+    }
 
 }
