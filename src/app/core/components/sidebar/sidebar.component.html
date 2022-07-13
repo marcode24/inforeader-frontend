@@ -5,21 +5,21 @@
   </div>
   <ul class="nav-list">
     <li>
-      <a (click)="changeExplore(true)">
+      <a routerLink="/">
         <i class='bx bx-news'></i>
         <span class="links_name">News</span>
       </a>
       <span class="tooltip">News</span>
     </li>
     <li>
-      <a (click)="changeExplore(false)">
+      <a (click)="navigate('/explore')">
         <i class='bx bx-world'></i>
         <span class="links_name">Explore</span>
       </a>
       <span class="tooltip">Explore</span>
     </li>
     <li>
-      <a routerLink="/feed/saved">
+      <a (click)="navigate('/feed/saved')">
         <i class='bx bx-bookmark'></i>
         <span class="links_name">Saved</span>
       </a>

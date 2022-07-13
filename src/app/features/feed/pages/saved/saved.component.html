@@ -1,1 +1,8 @@
-<app-news-container [feeds]="feeds" *ngIf="feeds" (moreItems)="onScroll()"></app-news-container>
+<section class="saved">
+  <div class="title-wrapper">
+    <span class="title-section">Saved</span>
+  </div>
+  <div class="news-container">
+    <app-news-container [feeds]="feeds" *ngIf="feeds" (moreItems)="onScroll()"></app-news-container>
+  </div>
+</section>

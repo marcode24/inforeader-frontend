@@ -16,6 +16,9 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   private wrapper: any;
   public userActive: User;
   private userActiveSubscription: Subscription;
+
+  public isAuthenticated: boolean = false;
+
   constructor(
     private authService: AuthService,
     private feedService: FeedService,
@@ -34,10 +37,9 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.isAuthenticated = this.authService.isAuthenticated();
     this.userActiveSubscription = this.authService.isAuthenticatedEmitter.subscribe(resp => {
-      if(resp) {
-        this.setUserInfoActive();
-      }
+      if(resp) this.setUserInfoActive();
     });
   }
 
@@ -46,25 +48,15 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   changeExplore(value: boolean): void {
-    if(!value) {
-      if(!this.authService.isAuthenticated()) {
-        return;
-      }
-    }
     this.router.navigate(['/']);
     this.feedService.changeToExplore(value);
   }
 
-  // toggled(element: any) {
-  //   console.log(this.userActive);
-  //   this.sidebar?.classList.toggle('open');
-  //   this.wrapper.classList.toggle('open');
-  //   console.log(this.sidebar);
-  //   if(this.sidebar?.classList.contains('open')) {
-  //     element.classList.replace('bx-menu', 'bx-menu-alt-right');//replacing the iocns class
-  //   } else {
-  //     element.classList.replace('bx-menu-alt-right','bx-menu');//replacing the iocns class
-  //   }
-  // }
+  navigate(route: string): void {
+    if(!this.isAuthenticated) {
+      return this.authService.showModalAuth();
+    }
+    this.router.navigate([route]);
+  }
 
 }

@@ -1,0 +1,79 @@
+.card3 {
+  background: #ffffff;
+  /* background: #313131; */
+  color: #000;
+  border-radius: 1rem;
+  box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+  display: flex;
+  align-items: flex-start;
+  min-height: 13rem;
+  height: 100%;
+  padding: 1rem 0.5rem;
+  margin: 0.5rem 0;
+  gap: 10px;
+}
+
+.card3 .image {
+  max-height: 12rem;
+  min-width: 12rem;
+  height: 12rem;
+  width: 12rem;
+  border-radius: 50%;
+}
+
+.card3 .content {
+  height: 11rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card3 .content .title-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.line {
+  height: 30px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.line-1 {
+  width: 90% !important;
+}
+
+.line-2 {
+  width: 70% !important;
+}
+
+.gradient {
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #fafafa;
+  background: linear-gradient(
+    to right,
+    #fafafa 15%,
+    #cdcdcd 20%,
+    #fafafa 30%,
+    #fafafa 15%
+  );
+  background-size: 1000px 640px;
+
+  position: relative;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}

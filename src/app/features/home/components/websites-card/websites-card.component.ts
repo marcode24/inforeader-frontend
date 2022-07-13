@@ -21,18 +21,19 @@ export class WebsitesCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   subscribeWebsite(id: string){
-    this.isAuthenticated = this.authService.isAuthenticated();
-    if(this.isAuthenticated) {
-      this.userService.modifyPreferences(id, 'subscription').subscribe(resp => {
-        this.websites.map(website => {
-          if( website._id === id)
-            website.inUser = !website.inUser;
-        });
-      });
+    if(!this.isAuthenticated) {
+      return this.authService.showModalAuth();
     }
+    this.userService.modifyPreferences(id, 'subscription').subscribe(resp => {
+      this.websites.map(website => {
+        if( website._id === id)
+          website.inUser = !website.inUser;
+      });
+    });
   }
 
 }

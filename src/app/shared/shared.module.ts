@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NewsContainerComponent } from './news-container/news-container.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
+import { NewsContainerComponent } from './news-container/news-container.component';
+import { ButtonTopComponent } from './button-top/button-top.component';
 
 @NgModule({
   declarations: [
-    NewsContainerComponent
+    NewsContainerComponent,
+    ButtonTopComponent
   ],
   imports: [
     CommonModule,
     InfiniteScrollModule,
   ],
   exports: [
-    NewsContainerComponent
+    NewsContainerComponent,
+    ButtonTopComponent
   ]
 })
 export class SharedModule { }

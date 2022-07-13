@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="!isLoading">
   <app-sidebar></app-sidebar>
   <div class="container">
     <router-outlet></router-outlet>
@@ -6,3 +6,4 @@
 </div>
 
 <app-auth></app-auth>
+<app-button-top></app-button-top>

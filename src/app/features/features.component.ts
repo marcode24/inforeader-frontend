@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-features',
@@ -6,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./features.component.css']
 })
 export class FeaturesComponent implements OnInit {
+
+  public isLoading: boolean = true;
+
+  constructor(authService: AuthService) {
+    authService.validateToken().subscribe(() => {
+      this.isLoading = false;
+    });
+  }
 
   ngOnInit() {}
 

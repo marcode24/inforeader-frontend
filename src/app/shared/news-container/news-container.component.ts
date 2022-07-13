@@ -25,6 +25,7 @@ export class NewsContainerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   moreDetails(id: string): void {
@@ -34,10 +35,9 @@ export class NewsContainerComponent implements OnInit {
   }
 
   saveFeed(id: string){
-    this.isAuthenticated = this.authService.isAuthenticated();
     if(!this.isAuthenticated) {
-      console.log('no esta logeado');
-    } else {
+      return this.authService.showModalAuth();
+    }
       this.userService.modifyPreferences(id, 'saved').subscribe(resp => {
         this.feeds.map(feed => {
           if(feed._id === id) {
@@ -45,7 +45,6 @@ export class NewsContainerComponent implements OnInit {
           }
         })
       })
-    }
   }
 
   changeStyle(element: any, change: boolean): void {

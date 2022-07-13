@@ -16,7 +16,7 @@ const base_url = environment.base_url;
 export class AuthService {
 
   private userActive: User;
-  public isAuthenticatedEmitter: Subject<boolean> = new Subject();
+  public isAuthenticatedEmitter: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
     private http: HttpClient,
@@ -31,13 +31,12 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    const isAuth = (this.userActive) ? true : false;
-    this.emitUserAuthenticated(isAuth);
-    return isAuth;
+    return (this.userActive) ? true : false;
   }
 
-  emitUserAuthenticated(isAuth: boolean): void {
-    this.isAuthenticatedEmitter.next(isAuth);
+  showModalAuth(): void {
+    const isAuth: boolean = this.userActive ? true : false;
+    this.isAuthenticatedEmitter.emit(isAuth);
   }
 
   get getUserActive(): User {
@@ -48,6 +47,7 @@ export class AuthService {
     const url = `${base_url}/auth/login`;
     return this.http.post<IResponseLogin>(url, data).pipe(map(resp => {
       this.setUserActiveInfo(resp);
+      this.isAuthenticatedEmitter.emit(true);
       return resp;
     }));
   }
@@ -56,7 +56,6 @@ export class AuthService {
     const url = `${base_url}/auth/renew`;
     return this.http.get<IResponseLogin>(url, this.headers).pipe(map(resp => {
       this.setUserActiveInfo(resp);
-      console.log(resp);
       return true;
     }), catchError(err => of(false)));
   }
@@ -65,7 +64,7 @@ export class AuthService {
     Storage.deleteSessionStorage('x-token');
     Storage.saveSessionStorage('x-token', resp.token);
     this.userActive = resp.user;
-    this.emitUserAuthenticated(true);
+    this.showModalAuth();
   }
 
 }

@@ -15,7 +15,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   private bodyElement = document.body as HTMLBodyElement;
   public showLogin: boolean = true;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
@@ -35,8 +35,8 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.modalAuth.nativeElement.classList.remove('modal-open');
   }
 
-  changePage(value: boolean) {
-    this.showLogin = value;
+  changePage(show: boolean) {
+    this.showLogin = show;
   }
 
 }
