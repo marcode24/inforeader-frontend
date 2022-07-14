@@ -44,7 +44,7 @@
 }
 
 .card.card-new .card-body .title-wrapper .new-title {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .card.card-new .card-body .title-wrapper .new-title:hover {

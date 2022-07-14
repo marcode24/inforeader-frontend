@@ -12,8 +12,7 @@
 }
 
 body {
-  background: #f4faff;
-  /* background: rgb(0, 0, 0); */
+  background: var(--bg-color);
 }
 
 body.modal-open {
@@ -22,13 +21,30 @@ body.modal-open {
   padding-right: 15px;
 }
 
+body.dark {
+  --bg-color: #000;
+  --bg-color-card: #16181c;
+  --bg-color-card-2: #000;
+  --bg-color-secondary: #e7e9ea;
+  --font-color-primary: #e7e9ea;
+  --box-shadow: none;
+  --bg-hover: rgb(231, 233, 234, 0.1);
+  --bg-button-follow: #ffffff;
+}
+
 :root {
   --primary-color: #0098fa;
   --secondary-color: #e66d9b;
-  --bg-color: #dadde2;
+  --bg-color: #f4faff;
+  --bg-color-card: #ffffff;
+  --bg-color-card-2: #ffffff;
   --bg-color-scroll: #a5a5a5;
   --bg-color-secondary: #262626;
+  --bg-button-follow: transparent;
+  --bg-hover: #e2e2e2;
+  --font-color-primary: #000;
   --font-color-secondary: #71767b;
+  --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 ::-webkit-scrollbar {
@@ -56,10 +72,10 @@ body.modal-open {
 
 .card {
   margin: 0.5rem 0;
-  background: #ffffff;
-  color: #000;
+  background: var(--bg-color-card);
+  color: var(--font-color-primary);
   border-radius: 1rem;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: var(--box-shadow);
 }
 
 .btn {
@@ -116,6 +132,7 @@ label.floating input {
   padding: 20px 10px 5px 10px;
   font-size: 16px;
   transition: 0.2s;
+  color: var(--font-color-primary);
 }
 label.floating input::placeholder {
   opacity: 0;
@@ -124,7 +141,7 @@ label.floating span {
   color: #71767b;
   position: absolute;
   top: -15px;
-  left: 9px;
+  left: 11px;
   transform: translateY(30px);
   font-size: 16px;
   width: 95%;
@@ -185,7 +202,7 @@ input:focus-within {
 }
 
 .btn-following {
-  background: transparent !important;
+  background: var(--bg-button-follow) !important;
   border: 1px solid transparent !important;
   color: #000 !important;
   border-color: var(--primary-color) !important;
@@ -206,6 +223,7 @@ section > .title-wrapper {
   font-size: 32px;
   font-weight: bold;
   margin-left: 1rem;
+  color: var(--font-color-primary);
 }
 
 .news-container {

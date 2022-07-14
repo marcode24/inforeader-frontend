@@ -12,10 +12,11 @@ form {
   gap: 1rem;
 }
 
-form .sign-in {
+form .sign-on {
   font-size: 42px;
   text-align: center;
   font-weight: bold;
+  color: var(--font-color-primary);
 }
 
 .has-account {
@@ -28,6 +29,7 @@ form .sign-in {
 .has-account span {
   font-size: 24px;
   font-weight: bold;
+  color: var(--font-color-primary);
 }
 
 .has-account a.link {

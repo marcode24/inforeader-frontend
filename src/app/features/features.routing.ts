@@ -18,6 +18,11 @@ const routes: Routes = [
     component: FeaturesComponent,
     loadChildren: () => import('./website/website.routing').then(m => m.WebsiteRoutingModule),
   },
+  {
+    path: 'settings',
+    component: FeaturesComponent,
+    loadChildren: () => import('./settings/settings.routing').then(m => m.SettingsRoutingModule),
+  }
 ];
 
 @NgModule({

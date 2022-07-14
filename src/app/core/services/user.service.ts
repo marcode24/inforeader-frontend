@@ -28,4 +28,9 @@ export class UserService {
     return this.http.patch(url, {}, this.headers);
   }
 
+  setTheme(darkMode: boolean): void {
+    const url = `${base_url}/user/theme`;
+    this.http.patch(url, { darkMode }, this.headers).subscribe(resp => console.log({resp}));
+  }
+
 }

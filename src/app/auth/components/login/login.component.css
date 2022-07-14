@@ -16,6 +16,7 @@ form .sign-in {
   font-size: 42px;
   text-align: center;
   font-weight: bold;
+  color: var(--font-color-primary);
 }
 
 .no-account {
@@ -28,6 +29,7 @@ form .sign-in {
 .no-account span {
   font-size: 24px;
   font-weight: bold;
+  color: var(--font-color-primary);
 }
 
 .no-account a.link {

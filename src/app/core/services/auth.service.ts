@@ -7,6 +7,7 @@ import { ILogin } from '@interfaces/login.interface';
 import { IResponseLogin } from '@interfaces/response.interface';
 import Storage from "@utils/storage.util";
 import { User } from '@models/user.model';
+import { SettingService } from './setting.service';
 
 const base_url = environment.base_url;
 
@@ -20,6 +21,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private settingService:SettingService,
   ) { }
 
   get headers() {
@@ -48,6 +50,8 @@ export class AuthService {
     return this.http.post<IResponseLogin>(url, data).pipe(map(resp => {
       this.setUserActiveInfo(resp);
       this.isAuthenticatedEmitter.emit(true);
+      const { user } = resp;
+      this.settingService.setTheme(user.darkMode ? 'dark' : 'light');
       return resp;
     }));
   }

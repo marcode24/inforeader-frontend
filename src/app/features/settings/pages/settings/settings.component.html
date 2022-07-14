@@ -1,0 +1,24 @@
+<section class="settings-section">
+  <div class="title-wrapper">
+    <span class="title-section">Settings</span>
+  </div>
+  <div class="content">
+    <div class="card card-profile" *ngIf="isAuthenticated">
+      <span class="title">Profile</span>
+      <app-user-form></app-user-form>
+    </div>
+    <div class="card card-preferences">
+      <span class="title">Preferences</span>
+      <div class="card-body">
+        <div class="item">
+          <span class="description">Appearence</span>
+          <app-toggle-theme></app-toggle-theme>
+        </div>
+        <div class="item">
+          <span class="description">Modify subscriptions</span>
+          <button routerLink="/websites" class="btn btn-primary">Modify</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

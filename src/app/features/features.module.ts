@@ -10,6 +10,7 @@ import { WebsiteModule } from './website/website.module';
 import { AuthModule } from 'app/auth/auth.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { HomeModule } from './home/home.module';
+import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HomeModule } from './home/home.module';
     WebsiteModule,
     AuthModule,
     HomeModule,
-    SharedModule
+    SharedModule,
+    SettingsModule
   ]
 })
 export class FeaturesModule { }

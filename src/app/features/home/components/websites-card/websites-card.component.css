@@ -25,9 +25,20 @@
   align-items: center;
 }
 
+.card.card-websites .item > a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--secondary-color);
+}
+
+.card.card-websites .item:last-child {
+  border-radius: 0 0 1rem 1rem;
+}
+
 .card.card-websites .item:hover,
 .card.card-websites .more:hover {
-  background-color: #f5f5f5;
+  background-color: var(--bg-hover);
   cursor: pointer;
 }
 
@@ -38,20 +49,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.card.card-websites .more a {
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.card.card-websites .more {
-  padding: 0.6rem 0.8rem;
-  height: 3rem;
-  border-radius: 0 0 1rem 1rem;
-  display: flex;
-  align-items: center;
 }
 
 .card.card-websites .item figure {

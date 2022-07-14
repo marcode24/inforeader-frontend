@@ -4,11 +4,13 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { NewsContainerComponent } from './news-container/news-container.component';
 import { ButtonTopComponent } from './button-top/button-top.component';
+import { ToggleThemeComponent } from './toggle-theme/toggle-theme.component';
 
 @NgModule({
   declarations: [
     NewsContainerComponent,
-    ButtonTopComponent
+    ButtonTopComponent,
+    ToggleThemeComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { ButtonTopComponent } from './button-top/button-top.component';
   ],
   exports: [
     NewsContainerComponent,
-    ButtonTopComponent
+    ButtonTopComponent,
+    ToggleThemeComponent
   ]
 })
 export class SharedModule { }
