@@ -110,8 +110,9 @@ nav li a {
 }
 
 nav li a:hover,
-.profile .profile-details:hover {
-  background: var(--bg-hover);
+.profile .profile-details:hover,
+.active {
+  background: var(--bg-hover) !important;
 }
 
 nav li a .links_name {

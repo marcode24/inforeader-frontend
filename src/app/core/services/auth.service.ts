@@ -71,4 +71,13 @@ export class AuthService {
     this.showModalAuth();
   }
 
+  signIn(data: ILogin): Observable<Boolean> {
+    const url = `${base_url}/user`;
+    return this.http.post<IResponseLogin>(url, data).pipe(map(resp => {
+      this.setUserActiveInfo(resp);
+      this.isAuthenticatedEmitter.emit(true);
+      return resp.ok;
+    }))
+  }
+
 }

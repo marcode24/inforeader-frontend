@@ -36,3 +36,12 @@ form .sign-on {
   color: var(--primary-color);
   cursor: pointer;
 }
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+span.error > ul > li {
+  margin-left: 1rem;
+}

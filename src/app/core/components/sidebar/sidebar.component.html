@@ -5,32 +5,32 @@
   </div>
   <ul class="nav-list">
     <li>
-      <a routerLink="/">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <i class='bx bx-news'></i>
         <span class="links_name">News</span>
       </a>
       <span class="tooltip">News</span>
     </li>
     <li>
-      <a (click)="navigate('/explore')">
+      <a routerLink="/explore" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <i class='bx bx-world'></i>
         <span class="links_name">Explore</span>
       </a>
       <span class="tooltip">Explore</span>
     </li>
     <li>
-      <a (click)="navigate('/feed/saved')">
+      <a routerLink="/feed/saved" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <i class='bx bx-bookmark'></i>
         <span class="links_name">Saved</span>
       </a>
       <span class="tooltip">Saved</span>
     </li>
     <li>
-      <a routerLink="/settings">
+      <a routerLink="/settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <i class='bx bx-cog'></i>
-        <span class="links_name">Configuration</span>
+        <span class="links_name">Settings</span>
       </a>
-      <span class="tooltip">Configuration</span>
+      <span class="tooltip">Settings</span>
     </li>
   </ul>
   <div class="profile" *ngIf="userActive">

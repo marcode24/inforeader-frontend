@@ -5,7 +5,7 @@
     </div>
     <div class="body">
       <app-login *ngIf="showLogin" (showRegister)="changePage($event)" (closeModal)="closeModal()"></app-login>
-      <app-register *ngIf="!showLogin" (showLogin)="changePage($event)"></app-register>
+      <app-register *ngIf="!showLogin" (showLogin)="changePage($event)" (closeModal)="closeModal()"></app-register>
     </div>
   </div>
 </div>

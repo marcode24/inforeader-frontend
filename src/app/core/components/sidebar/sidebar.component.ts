@@ -1,10 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { User } from '@models/user.model';
-import { AuthService } from '@services/auth.service';
-import { FeedService } from '@services/feed.service';
 import { Subscription } from 'rxjs';
 
+import { User } from '@models/user.model';
+
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,8 +20,6 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private feedService: FeedService,
-    private router: Router
   ) {
     this.userActive = authService.getUserActive;
   }
@@ -48,18 +45,6 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setUserInfoActive(): void {
     this.userActive = this.authService.getUserActive;
-  }
-
-  changeExplore(value: boolean): void {
-    this.router.navigate(['/']);
-    this.feedService.changeToExplore(value);
-  }
-
-  navigate(route: string): void {
-    if(!this.isAuthenticated) {
-      return this.authService.showModalAuth();
-    }
-    this.router.navigate([route]);
   }
 
 }

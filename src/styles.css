@@ -188,6 +188,11 @@ input:focus-within {
   font-weight: 300;
 }
 
+.text-error {
+  font-size: 13px;
+  margin-left: 5px;
+}
+
 .error {
   color: var(--secondary-color);
 }

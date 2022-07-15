@@ -15,8 +15,11 @@ export class IsAuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this.authService.validateToken().pipe(tap(isAuthenticated => {
+        console.log({isAuthenticated});
         if (!isAuthenticated) {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/').then(() => {
+            this.authService.showModalAuth();
+          });
         }
       }));
   }

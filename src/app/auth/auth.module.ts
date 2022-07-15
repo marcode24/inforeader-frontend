@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AuthComponent } from './auth.component';
 import { ComponentsModule } from './components/components.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,9 @@ import { ComponentsModule } from './components/components.module';
   ],
   imports: [
     CommonModule,
-    ComponentsModule
+    ComponentsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     AuthComponent
