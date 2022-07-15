@@ -2,12 +2,15 @@
   display: grid;
   grid-template-columns: auto 300px;
   gap: 0.5rem;
-  padding-top: 1rem;
 }
 
 .feed-wrapper .findings {
   width: 300px;
   opacity: 1;
+}
+
+.card.news-detail {
+  margin: 1rem;
 }
 
 .card.card-findings {

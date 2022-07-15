@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin, map, Observable } from 'rxjs';
+import { debounceTime, forkJoin, map, Observable, Subject } from 'rxjs';
 
 import { Feed } from '@models/feed.model';
 import { Website } from '@models/website.model';
@@ -13,6 +13,7 @@ import { WebsiteService } from '@services/website.service';
   styleUrls: ['./explore.component.css']
 })
 export class ExploreComponent implements OnInit {
+  private loadingNews: Subject<boolean> = new Subject();
   public isLoading: boolean = true;
 
   private skip: number = 0;
@@ -24,10 +25,12 @@ export class ExploreComponent implements OnInit {
   constructor(
     private websiteService: WebsiteService,
     private feedService: FeedService
-  ) { }
+  ) {
+    this.loadingNews.pipe(debounceTime(2000)).subscribe(() => this.getDataInitial());
+  }
 
   ngOnInit(): void {
-    this.getDataInitial();
+    this.loadingNews.next(true);
   }
 
   getDataInitial() {
@@ -44,6 +47,11 @@ export class ExploreComponent implements OnInit {
         this.isLoading = false;
       }
     })
+  }
+
+  reloadData() {
+    this.isLoading = true;
+    this.loadingNews.next(true);
   }
 
   getFeeds(): Observable<Feed[]> {

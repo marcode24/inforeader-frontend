@@ -3,6 +3,11 @@
     <span class="title-section">Saved</span>
   </div>
   <div class="news-container">
-    <app-news-container [feeds]="feeds" *ngIf="feeds" (moreItems)="onScroll()"></app-news-container>
+    <div class="skeletons" *ngIf="isLoading">
+      <app-card-new></app-card-new>
+      <app-card-new></app-card-new>
+      <app-card-new></app-card-new>
+    </div>
+    <app-news-container [feeds]="feeds" *ngIf="!isLoading" (moreItems)="onScroll()"></app-news-container>
   </div>
 </section>

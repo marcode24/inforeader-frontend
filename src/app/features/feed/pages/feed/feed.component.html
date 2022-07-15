@@ -20,7 +20,7 @@
   <div class="findings">
     <div class="card card-findings">
       <span class="card-title">Recents</span>
-      <div class="item" *ngFor="let recentFeed of recentsFeed">
+      <div (click)="goToFeed(recentFeed._id)" class="item" *ngFor="let recentFeed of recentsFeed">
         <div class="item-content">
           <span class="title">{{recentFeed.title | slice:0:35}}{{(recentFeed.title.length > 20)?'...':'' }}</span>
           <span class="writer">{{recentFeed.writer}}</span>

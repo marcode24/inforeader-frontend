@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { forkJoin, map, Observable, Subscription } from 'rxjs';
+import { debounceTime, forkJoin, map, Observable, Subject, Subscription } from 'rxjs';
 
 import { Feed } from '@models/feed.model';
 import { Website } from '@models/website.model';
@@ -14,7 +14,7 @@ import { WebsiteService } from '@services/website.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
+  private loadingNews: Subject<boolean> = new Subject();
   public isLoading: boolean = true;
   private isAuthenticated: boolean = false;
 
@@ -30,7 +30,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     private feedService: FeedService,
     private websiteService: WebsiteService,
     private authService: AuthService,
-  ) { }
+  ) {
+    this.loadingNews.pipe(debounceTime(1000)).subscribe(() => this.getDataInitial());
+   }
 
   ngOnDestroy(): void {
     this.isAuthenticatedSub.unsubscribe();
@@ -38,7 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuthenticated();
-    this.getDataInitial();
+    this.loadingNews.next(true);
     this.isAuthenticatedSub = this.authService.isAuthenticatedEmitter.subscribe(resp => resp ? this.resetDataInitial(): '');
   }
 
@@ -49,6 +51,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     document.documentElement.scrollTop = 0; // for another one
     this.skip = 0;
     this.getDataInitial();
+  }
+
+  reloadData() {
+    this.isLoading = true;
+    this.loadingNews.next(true);
   }
 
   getDataInitial() {

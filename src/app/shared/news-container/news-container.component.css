@@ -7,7 +7,8 @@
   display: flex;
   align-items: flex-start;
   min-height: 13rem;
-  height: auto;
+  height: 13rem;
+  max-height: 13rem;
   transition: 0.5s;
 }
 
@@ -80,6 +81,8 @@
 @media (max-width: 480px) {
   .card.card-new {
     flex-direction: column;
+    height: auto;
+    max-height: none;
   }
 
   .card.card-new figure {

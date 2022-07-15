@@ -9,6 +9,10 @@
   opacity: 1;
 }
 
+.skeletons {
+  margin-top: 0.5rem;
+}
+
 @media (max-width: 1200px) {
   .home-section .recently .news {
     grid-template-columns: repeat(1, 100%);

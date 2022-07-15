@@ -30,6 +30,8 @@ body.dark {
   --box-shadow: none;
   --bg-hover: rgb(231, 233, 234, 0.1);
   --bg-button-follow: #ffffff;
+  --bg-skeleton: #424449;
+  --bg-skeleton-2: #2e2c2c;
 }
 
 :root {
@@ -45,6 +47,8 @@ body.dark {
   --font-color-primary: #000;
   --font-color-secondary: #71767b;
   --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --bg-skeleton: #fafafa;
+  --bg-skeleton-2: #cdcdcd;
 }
 
 ::-webkit-scrollbar {
@@ -219,18 +223,66 @@ section > .title-wrapper {
   backdrop-filter: blur(12px);
   z-index: 100;
   width: 100%;
-  height: 60px;
+  height: 70px;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .title-wrapper > span.title-section {
-  font-size: 32px;
+  font-size: 42px;
   font-weight: bold;
-  margin-left: 1rem;
   color: var(--font-color-primary);
+}
+
+.title-wrapper > a.refresh {
+  font-size: 42px;
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease 0s;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.title-wrapper > a.refresh:hover {
+  background-color: #0096fa41;
+  transform: rotate(135deg);
 }
 
 .news-container {
   margin: 0 1rem;
+}
+
+/* Sekeletons design */
+
+.gradient {
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: var(--bg-skeleton);
+  background: linear-gradient(
+    to right,
+    var(--bg-skeleton) 15%,
+    var(--bg-skeleton-2) 20%,
+    var(--bg-skeleton) 30%,
+    var(--bg-skeleton) 15%
+  );
+  background-size: 1000px 640px;
+
+  position: relative;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
 }

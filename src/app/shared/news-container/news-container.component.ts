@@ -29,8 +29,6 @@ export class NewsContainerComponent implements OnInit {
   }
 
   moreDetails(id: string): void {
-    const recentFeeds = this.feeds.slice(0, 6);
-    this.feedService.setRecentsFeeds(recentFeeds);
     this.router.navigate([`/feed/${id}`]);
   }
 

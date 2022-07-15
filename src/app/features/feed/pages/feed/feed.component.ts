@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { FeedService } from '@services/feed.service';
 
 import { Feed } from '@models/feed.model';
+import { forkJoin } from 'rxjs';
 // use encapsulation to styles works correctly from css files
 @Component({
   selector: 'app-feed',
@@ -14,21 +15,34 @@ import { Feed } from '@models/feed.model';
 export class FeedComponent implements OnInit {
   public feed: Feed;
   public recentsFeed: Feed[];
+  public isLoading: boolean = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private feedService: FeedService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.recentsFeed = this.feedService.getRecentsFeeds;
-    this.activatedRoute.params.subscribe(({ feedID }) => this.getFeed(feedID));
+    this.activatedRoute.params.subscribe(({ feedID }) => this.loadData(feedID));
   }
 
-  getFeed(id: string): void {
-    this.feedService.getFeed(id).subscribe((feed: Feed) => {
-      this.feed = feed;
+  loadData(id: string): void {
+    this.isLoading = true;
+    forkJoin({
+      feed: this.feedService.getFeed(id),
+      recentFeeds: this.feedService.getFeeds(0, 6, false),
+    }).subscribe({
+      next: ({ feed, recentFeeds }) => {
+        this.feed = feed,
+        this.recentsFeed = recentFeeds;
+      },
+      complete: () => this.isLoading = false,
     })
+  }
+
+  goToFeed(id: string): void {
+    this.router.navigate([`/feed/${id}`]);
   }
 
 }

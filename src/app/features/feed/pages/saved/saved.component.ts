@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Feed } from '@models/feed.model';
 import { FeedService } from '@services/feed.service';
-import { map, Observable } from 'rxjs';
+import { debounceTime, map, Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-saved',
@@ -12,14 +12,24 @@ export class SavedComponent implements OnInit {
   private skip: number = 0;
   private limit: number = 10;
   public feeds: Feed[];
+  public isLoading: boolean = true;
+  private loadingNews: Subject<boolean> = new Subject();
+
   constructor(
     private feedService: FeedService,
-  ) { }
+  ) {
+    this.loadingNews.pipe(debounceTime(2000)).subscribe(() => this.getFeedsSaved());
+  }
 
   ngOnInit(): void {
-    this.getSavedFeeds().subscribe(feeds => {
-      console.log(feeds);
-      this.feeds = feeds
+    this.loadingNews.next(true);
+  }
+
+  getFeedsSaved() {
+    this.isLoading = true;
+    this.getSavedFeeds().subscribe({
+      next: (feeds) => this.feeds = feeds,
+      complete: () => this.isLoading = false,
     });
   }
 

@@ -35,16 +35,7 @@ export class FeedService {
     };
   }
 
-  get getRecentsFeeds(): Feed[] {
-    return this.recentFeeds;
-  }
-
-  setRecentsFeeds(feeds: Feed[]): void {
-    this.recentFeeds = feeds;
-  }
-
   getFeeds(skip = 0, limit = 10, isAuthenticated: boolean = false): Observable<Feed[]> {
-
     const url = (!isAuthenticated) ?
     `${base_url}/feed?skip=${skip}&limit=${limit}` :
     `${base_url}/feed/byUser/subscription?skip=${skip}&limit=${limit}`;
