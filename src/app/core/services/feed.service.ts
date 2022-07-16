@@ -40,25 +40,32 @@ export class FeedService {
     `${base_url}/feed?skip=${skip}&limit=${limit}` :
     `${base_url}/feed/byUser/subscription?skip=${skip}&limit=${limit}`;
     const headers = !isAuthenticated ? {} : this.headers;
-    return this.http.get<IResponseFeed>(url, headers).pipe(map(resp => this.mapInUserResource(resp.feeds)));
+    return this.http.get<IResponseFeed>(url, headers)
+      .pipe(map(resp => this.mapInUserResource(resp.feeds) as Feed[]));
 
   }
 
   getFeed(id: string): Observable<Feed> {
     const url = `${base_url}/feed/${id}`;
-    return this.http.get<IResponseFeed>(url).pipe(map((resp) => resp.feed));
+    return this.http.get<IResponseFeed>(url)
+      .pipe(map((resp) => this.mapInUserResource(resp.feed) as Feed));
   }
 
   getSavedFeeds(skip = 0, limit = 10): Observable<Feed[]> {
     const url = `${base_url}/feed/byUser/saved?skip=${skip}&limit=${limit}`;
-    return this.http.get<IResponseFeed>(url, this.headers).pipe(map((resp) => this.mapInUserResource(resp.feeds)));
+    return this.http.get<IResponseFeed>(url, this.headers)
+      .pipe(map((resp) => this.mapInUserResource(resp.feeds) as Feed[]));
   }
 
-  private mapInUserResource(feeds: Feed[]): Feed[] {
+  private mapInUserResource(feeds: Feed[] | Feed): Feed[] | Feed {
     const userActive = this.authService.getUserActive;
     if(userActive) {
       const { savedFeeds } = userActive;
-      feeds.map(feed => feed.inUser = savedFeeds?.includes(feed._id));
+      if(Array.isArray(feeds)) {
+        feeds.map(feed => feed.inUser = savedFeeds?.includes(feed._id));
+      } else {
+        feeds.inUser = savedFeeds?.includes(feeds._id);
+      }
     }
     return feeds;
   }

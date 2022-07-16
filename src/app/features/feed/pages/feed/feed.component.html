@@ -5,9 +5,10 @@
       <span class="title-new">{{feed.title}}</span>
       <div class="details">
         <span class="detail">{{feed.writer}} &bull; {{feed.pubDate | date: 'dd/MM/yyyy, h:mm a' }}</span>
-        <div class="bookmark">
-          <i class="bx bx-bookmark"></i>
-        </div>
+        <a class="save" (click)="saveFeed(feed._id)">
+          <i class="bx bx-bookmark-plus" [class.bxs-bookmark-minus]="feed.inUser" #iconi
+            (mouseover)="changeStyle(iconi, true)" (mouseout)="changeStyle(iconi, false)"></i>
+        </a>
       </div>
       <div class="feed" [innerHTML]="feed.content | html">
       </div>

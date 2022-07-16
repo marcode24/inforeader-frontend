@@ -35,6 +35,7 @@
   width: 100%;
   flex-grow: 1;
   padding: 1rem;
+  gap: 10px;
 }
 
 .card.card-new .card-body .title-wrapper {
@@ -46,6 +47,14 @@
 
 .card.card-new .card-body .title-wrapper .new-title {
   font-weight: 600;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  height: 108px;
+  max-height: 108px;
 }
 
 .card.card-new .card-body .title-wrapper .new-title:hover {
@@ -92,5 +101,9 @@
 
   .card.card-new figure img {
     border-radius: 0.6rem 0.6rem 0 0;
+  }
+  .card.card-new .card-body .title-wrapper .new-title {
+    height: 90px;
+    font-size: 20px;
   }
 }

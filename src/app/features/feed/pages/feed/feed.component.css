@@ -54,9 +54,11 @@
   color: var(--font-color-secondary);
 }
 
-.content .details .bookmark {
+.content .details .save {
   font-size: 24px;
   color: var(--primary-color);
+  z-index: 10;
+  cursor: pointer;
 }
 
 .content .details-website {

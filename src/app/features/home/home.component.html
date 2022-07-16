@@ -2,7 +2,7 @@
   <section class="recently">
     <div class="title-wrapper">
       <span class="title-section">Latest news</span>
-      <a class="refresh" *ngIf="!isLoading" (click)="reloadData()">
+      <a class="refresh" [class.loading]="isLoading" *ngIf="getSkip >= 10" (click)="reloadData()">
         <i class="bx bx-refresh"></i>
       </a>
     </div>

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { debounceTime, Subject } from 'rxjs';
 
 import { Feed } from '@models/feed.model';
 
 import { AuthService } from '@services/auth.service';
-import { FeedService } from '@services/feed.service';
 import { UserService } from '@services/user.service';
 
 @Component({
@@ -16,13 +16,18 @@ export class NewsContainerComponent implements OnInit {
   private isAuthenticated: boolean = false;
   @Input() feeds: Feed[] = [];
   @Output() moreItems: EventEmitter<boolean> = new EventEmitter();
+  private saveFeedSub: Subject<string> = new Subject();
 
   constructor(
-    private feedService: FeedService,
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
-  ) { }
+  ) {
+     this.saveFeedSub.pipe(
+      debounceTime(250))
+      .subscribe((idFeed) => this.updatePreferences(idFeed)
+    );
+  }
 
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuthenticated();
@@ -36,13 +41,17 @@ export class NewsContainerComponent implements OnInit {
     if(!this.isAuthenticated) {
       return this.authService.showModalAuth();
     }
-      this.userService.modifyPreferences(id, 'saved').subscribe(resp => {
-        this.feeds.map(feed => {
-          if(feed._id === id) {
-            feed.inUser = !feed.inUser;
-          }
-        })
+    this.saveFeedSub.next(id);
+  }
+
+  updatePreferences(idFeed: string): void {
+    this.userService.modifyPreferences(idFeed, 'saved').subscribe(resp => {
+      this.feeds.map(feed => {
+        if(feed._id === idFeed) {
+          feed.inUser = !feed.inUser;
+        }
       })
+    })
   }
 
   changeStyle(element: any, change: boolean): void {

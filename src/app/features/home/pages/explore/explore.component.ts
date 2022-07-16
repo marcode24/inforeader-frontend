@@ -34,6 +34,9 @@ export class ExploreComponent implements OnInit {
   }
 
   getDataInitial() {
+    document.body.scrollTop = 0; // this is for Safari
+    document.documentElement.scrollTop = 0; // for another one
+    this.skip = 0;
     this.isLoading = true;
     forkJoin({
       feeds: this.getFeeds(),
@@ -61,6 +64,10 @@ export class ExploreComponent implements OnInit {
   onScroll() {
     this.skip += this.limit;
     this.getFeeds().subscribe(feeds => this.feeds = [...this.feeds, ...feeds]);
+  }
+
+  get getSkip(): number {
+    return this.skip;
   }
 
 }

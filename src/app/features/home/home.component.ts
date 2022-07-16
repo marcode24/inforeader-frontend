@@ -46,9 +46,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   resetDataInitial() {
     this.isAuthenticated = true;
-    // fixed it - using service or emitter
-    document.body.scrollTop = 0; // this is for Safari
-    document.documentElement.scrollTop = 0; // for another one
     this.skip = 0;
     this.getDataInitial();
   }
@@ -59,6 +56,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getDataInitial() {
+    document.body.scrollTop = 0; // this is for Safari
+    document.documentElement.scrollTop = 0; // for another one
+    this.skip = 0;
     this.isLoading = true;
     forkJoin({
       feeds: this.getFeeds(),
@@ -86,7 +86,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getFeeds().subscribe(feeds => this.feeds = [...this.feeds, ...feeds]);
   }
 
-
-
+  get getSkip(): number {
+    return this.skip;
+  }
 
 }
