@@ -34,16 +34,13 @@
     </li>
   </ul>
   <div class="profile" *ngIf="userActive">
-    <div class="profile-details">
+    <div routerLink="/settings" class="profile-details">
       <figure class="box-image">
         <img
           src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
           alt="img-user">
       </figure>
       <span class="username"> {{userActive.email }} </span>
-      <a href="" class="more">
-        <i class='bx bx-dots-horizontal-rounded'></i>
-      </a>
     </div>
   </div>
 
