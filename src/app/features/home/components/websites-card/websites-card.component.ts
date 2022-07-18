@@ -36,4 +36,8 @@ export class WebsitesCardComponent implements OnInit {
     });
   }
 
+  public handleMissingImage(event: Event) {
+  (event.target as HTMLImageElement).style.display = 'none';
+  }
+
 }

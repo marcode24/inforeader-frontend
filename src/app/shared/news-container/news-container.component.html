@@ -1,4 +1,5 @@
 <div class="news" infiniteScroll [infiniteScrollDistance]="1" (scrolled)="onScroll()">
+  <app-new-card-recent *ngIf="recentFeed" [feed]="recentFeed"></app-new-card-recent>
   <div class="card card-new" *ngFor="let feed of feeds; let i = index">
     <figure *ngIf="feed.image">
       <img [src]="feed.image" alt="news-image" loading="lazy">

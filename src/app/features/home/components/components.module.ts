@@ -6,11 +6,11 @@ import { WebsitesCardComponent } from './websites-card/websites-card.component';
 
 @NgModule({
   declarations: [
-    WebsitesCardComponent
+    WebsitesCardComponent,
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     WebsitesCardComponent,

@@ -12,7 +12,8 @@
         <app-card-new></app-card-new>
         <app-card-new></app-card-new>
       </div>
-      <app-news-container *ngIf="!isLoading" [feeds]="feeds" (moreItems)="onScroll()"></app-news-container>
+      <app-news-container [recentFeed]="recentFeed" *ngIf="!isLoading" [feeds]="feeds" (moreItems)="onScroll()">
+      </app-news-container>
     </div>
   </section>
   <section class="websites">

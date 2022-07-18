@@ -15,6 +15,7 @@ import { UserService } from '@services/user.service';
 export class NewsContainerComponent implements OnInit {
   private isAuthenticated: boolean = false;
   @Input() feeds: Feed[] = [];
+  @Input() recentFeed: Feed;
   @Output() moreItems: EventEmitter<boolean> = new EventEmitter();
   private saveFeedSub: Subject<string> = new Subject();
 

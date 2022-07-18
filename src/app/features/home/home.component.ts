@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public websites: Website[] = [];
   public feeds: Feed[] = [];
+  public recentFeed: Feed;
 
   private isAuthenticatedSub: Subscription;
 
@@ -67,11 +68,23 @@ export class HomeComponent implements OnInit, OnDestroy {
       next: ({ feeds, websites }) => {
         this.feeds = feeds;
         this.websites = websites;
+        this.setRecentFeed(0);
       },
       complete: () => {
         this.isLoading = false;
       }
     })
+  }
+
+  private setRecentFeed(index: number): void {
+    if(index < this.feeds.length) {
+      const item = this.feeds[index];
+      if(!item.image || item.image === '') {
+        return this.setRecentFeed(index + 1);
+      } else {
+        this.recentFeed = item;
+      }
+    }
   }
 
   getFeeds(): Observable<Feed[]> {

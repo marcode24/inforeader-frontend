@@ -26,7 +26,7 @@
           <span class="title">{{recentFeed.title | slice:0:35}}{{(recentFeed.title.length > 20)?'...':'' }}</span>
           <span class="writer">{{recentFeed.writer}}</span>
         </div>
-        <figure>
+        <figure *ngIf="recentFeed.image">
           <img [src]="recentFeed.image" alt="new title">
         </figure>
       </div>

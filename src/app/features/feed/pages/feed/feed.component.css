@@ -23,7 +23,7 @@
   max-width: inherit;
   display: flex;
   flex-direction: column;
-  transform: translate(0, 8px);
+  transform: translate(0, 1rem);
 }
 
 .banner {
