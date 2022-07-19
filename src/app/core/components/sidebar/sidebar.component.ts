@@ -47,4 +47,9 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.userActive = this.authService.getUserActive;
   }
 
+  get getName(): string {
+    const { name, lastName, email } = this.userActive;
+    return (name && name?.length > 0) ? `${name} ${lastName || ''}` : email;
+  }
+
 }

@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { catchError, map, Observable, of, Subject, tap } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -78,6 +78,11 @@ export class AuthService {
       this.isAuthenticatedEmitter.emit(true);
       return resp.ok;
     }))
+  }
+
+  setNewUserInfo(name: string, lastName: string): void {
+    this.userActive.name = name;
+    this.userActive.lastName = lastName
   }
 
 }

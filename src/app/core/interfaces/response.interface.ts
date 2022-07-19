@@ -15,7 +15,12 @@ export interface IResponseWebsite {
 }
 
 export interface IResponseLogin {
-  ok: true,
+  ok: boolean,
   token: string,
   user: User,
 };
+
+export interface IResponseUser {
+  ok: boolean,
+  msg: string;
+}

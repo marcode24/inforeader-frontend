@@ -1,16 +1,16 @@
-/* label.floating span {
-  top: -24px;
-  transform: translateY(17px);
-}
-
-label.floating:focus-within > span,
-input:not(:placeholder-shown) + span {
-  transform: translateY(7px);
-} */
-
 form {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.message {
+  color: var(--primary-color);
+  margin-left: 5px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
 }
