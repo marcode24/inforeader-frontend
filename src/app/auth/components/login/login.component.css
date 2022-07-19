@@ -36,3 +36,9 @@ form .sign-in {
   color: var(--primary-color);
   cursor: pointer;
 }
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 0 1rem 1rem;
+  }
+}

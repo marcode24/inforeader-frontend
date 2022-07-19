@@ -1,6 +1,6 @@
 <div class="register-container">
   <form [formGroup]="registerForm" (submit)="register()">
-    <span class="sign-on">Register</span>
+    <span class="sign-on">Sign on</span>
     <div class="input-group">
       <label for="email" class="floating">
         <input formControlName="email" type="text" id="email" placeholder="email">
@@ -49,6 +49,6 @@
   </div>
   <div class="has-account">
     <span>Already have account?</span>
-    <a (click)="changePage()" class="link">Sign on</a>
+    <a (click)="changePage()" class="link">Sign in</a>
   </div>
 </div>

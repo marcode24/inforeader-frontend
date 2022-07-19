@@ -13,8 +13,9 @@ export class AuthComponent implements OnInit, OnDestroy {
   private authSubscription: Subscription;
   @ViewChild('modalAuth') modalAuth: ElementRef;
   private bodyElement = document.body as HTMLBodyElement;
-  public showLogin: boolean = true;
 
+  public showLogin: boolean = false;
+  public showMore: boolean = true;
   private modalOpen: boolean = false;
 
   constructor(private authService: AuthService) {}
@@ -37,9 +38,12 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.bodyElement.classList.remove('modal-open');
     this.modalAuth.nativeElement.classList.remove('modal-open');
     this.modalOpen = false;
+    this.showLogin = false;
+    this.showMore = true;
   }
 
   changePage(show: boolean) {
+    this.showMore = false;
     this.showLogin = show;
   }
 

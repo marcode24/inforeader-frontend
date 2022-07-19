@@ -32,6 +32,7 @@ body.dark {
   --bg-button-follow: #ffffff;
   --bg-skeleton: #424449;
   --bg-skeleton-2: #2e2c2c;
+  --text-shadow-color: #000000;
 }
 
 :root {
@@ -49,6 +50,7 @@ body.dark {
   --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   --bg-skeleton: #fafafa;
   --bg-skeleton-2: #cdcdcd;
+  --text-shadow-color: #e6e6e6;
 }
 
 ::-webkit-scrollbar {

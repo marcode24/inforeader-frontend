@@ -24,6 +24,7 @@ form .sign-on {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  text-align: center;
 }
 
 .has-account span {
@@ -44,4 +45,10 @@ form .sign-on {
 
 span.error > ul > li {
   margin-left: 1rem;
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 0 1rem 1rem;
+  }
 }
