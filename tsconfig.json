@@ -31,6 +31,7 @@
       "@utils/*": [ "app/core/utils/*" ],
       "@interceptors/*": [ "app/core/interceptors/*" ],
       "@guards/*": [ "app/core/guards/*" ],
+      "@constants/*": [ "app/core/constants/*" ],
     }
   },
   "angularCompilerOptions": {

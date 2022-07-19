@@ -7,13 +7,15 @@ import { NewsContainerComponent } from './news-container/news-container.componen
 import { ButtonTopComponent } from './button-top/button-top.component';
 import { ToggleThemeComponent } from './toggle-theme/toggle-theme.component';
 import { NewCardRecentComponent } from './new-card-recent/new-card-recent.component';
+import { NoFeedsComponent } from './no-feeds/no-feeds.component';
 
 @NgModule({
   declarations: [
     NewsContainerComponent,
     ButtonTopComponent,
     ToggleThemeComponent,
-    NewCardRecentComponent
+    NewCardRecentComponent,
+    NoFeedsComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { NewCardRecentComponent } from './new-card-recent/new-card-recent.compon
     NewsContainerComponent,
     ButtonTopComponent,
     ToggleThemeComponent,
+    NoFeedsComponent
   ]
 })
 export class SharedModule { }

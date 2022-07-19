@@ -8,6 +8,8 @@
       <app-card-new></app-card-new>
       <app-card-new></app-card-new>
     </div>
-    <app-news-container [feeds]="feeds" *ngIf="!isLoading" (moreItems)="onScroll()"></app-news-container>
+    <app-no-feeds *ngIf="!isLoading && feeds.length < 1" [messageIndex]="1"></app-no-feeds>
+    <app-news-container [feeds]="feeds" *ngIf="!isLoading && feeds.length > 0" (moreItems)="onScroll()">
+    </app-news-container>
   </div>
 </section>
