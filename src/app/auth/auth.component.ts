@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } fro
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
+import { IModalAuth } from '@interfaces/modal.interface';
 
 @Component({
   selector: 'app-auth',
@@ -25,10 +26,18 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticatedEmitter.subscribe(isAuth => !isAuth ? this.openModal() : '');
+    this.authSubscription = this.authService.isAuthenticatedEmitter.subscribe(({ to, isAuth }) => !isAuth && to !== 'hide' ? this.openModal({to, isAuth}) : '');
   }
 
-  openModal(): void {
+  openModal(options: IModalAuth): void {
+    const { to } = options;
+    if(to !== 'init') {
+      this.showMore = false;
+      this.showLogin = to === 'login' ? true : false;
+    } else {
+      this.showMore = true;
+      this.showLogin = false;
+    }
     this.bodyElement.classList.add('modal-open');
     this.modalAuth.nativeElement.classList.add('modal-open');
     this.modalOpen = true;

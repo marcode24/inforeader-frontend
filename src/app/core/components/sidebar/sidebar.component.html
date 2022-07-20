@@ -33,8 +33,13 @@
       <span class="tooltip">Settings</span>
     </li>
   </ul>
-  <div class="profile" *ngIf="userActive">
-    <div routerLink="/settings" class="profile-details">
+
+  <div class="profile">
+    <div class="btn-wrapper" *ngIf="!isAuthenticated">
+      <button (click)="showModal('login')" class="btn btn-following btn-lg">Sign in</button>
+      <button (click)="showModal('register')" class="btn btn-primary btn-lg">Sign on</button>
+    </div>
+    <div *ngIf="isAuthenticated" routerLink="/settings" class="profile-details">
       <figure class="box-image">
         <img
           src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"

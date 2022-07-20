@@ -35,11 +35,13 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuthenticated();
-    this.userActiveSubscription = this.authService.isAuthenticatedEmitter.subscribe(resp => {
-      if(resp) {
+    this.userActiveSubscription = this.authService.isAuthenticatedEmitter.subscribe(({isAuth}) => {
+      if(isAuth) {
         this.setUserInfoActive();
         this.isAuthenticated = true;
-      };
+      } else {
+        this.isAuthenticated = false;
+      }
     });
   }
 
@@ -50,6 +52,10 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   get getName(): string {
     const { name, lastName, email } = this.userActive;
     return (name && name?.length > 0) ? `${name} ${lastName || ''}` : email;
+  }
+
+  showModal(to: 'login'|'register'): void {
+    this.authService.showModalAuth(to);
   }
 
 }

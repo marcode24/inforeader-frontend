@@ -154,6 +154,7 @@ nav .profile {
   transition: 0.3s;
   width: 100%;
   transition: 0.5s;
+  gap: 14px;
 }
 
 .profile-details .box-image {
@@ -171,10 +172,9 @@ nav .profile {
 }
 
 .profile-details .username {
-  margin: 0 5px;
   flex-grow: 1;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
   color: var(--bg-color-secondary);
   white-space: nowrap;
   opacity: 1;
@@ -194,6 +194,21 @@ nav .profile {
 .profile-details a i {
   min-width: 0;
   font-size: 24px;
+}
+
+.profile .btn-wrapper {
+  margin-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  max-width: 90%;
+  border-radius: 40px;
 }
 
 @media (max-width: 1280px) {
@@ -236,6 +251,10 @@ nav .profile {
 
   .profile-details .box-image {
     justify-content: center;
+  }
+
+  .profile .btn-wrapper {
+    display: none;
   }
 }
 

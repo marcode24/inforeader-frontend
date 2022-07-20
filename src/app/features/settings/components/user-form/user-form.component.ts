@@ -37,7 +37,6 @@ export class UserFormComponent implements OnInit {
       name: [name || '', [Validators.required, Validators.pattern(this.regexExpression.TEXT)]],
       lastName: [lastName || '', [Validators.pattern(this.regexExpression.TEXT)]],
     });
-    console.log(this.userForm.value);
   }
 
   updateUserInfo() {

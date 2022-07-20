@@ -17,7 +17,7 @@ export class IsAuthGuard implements CanActivate {
       return this.authService.validateToken().pipe(tap(isAuthenticated => {
         if (!isAuthenticated) {
           this.router.navigateByUrl('/').then(() => {
-            this.authService.showModalAuth();
+            this.authService.showModalAuth('init');
           });
         }
       }));

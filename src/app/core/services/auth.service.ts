@@ -8,6 +8,7 @@ import { IResponseLogin } from '@interfaces/response.interface';
 import Storage from "@utils/storage.util";
 import { User } from '@models/user.model';
 import { SettingService } from './setting.service';
+import { IModalAuth } from '@interfaces/modal.interface';
 
 const base_url = environment.base_url;
 
@@ -16,8 +17,8 @@ const base_url = environment.base_url;
 })
 export class AuthService {
 
-  private userActive: User;
-  public isAuthenticatedEmitter: EventEmitter<boolean> = new EventEmitter();
+  private userActive: User | null;
+  public isAuthenticatedEmitter: EventEmitter<IModalAuth> = new EventEmitter();
 
   constructor(
     private http: HttpClient,
@@ -36,24 +37,30 @@ export class AuthService {
     return (this.userActive) ? true : false;
   }
 
-  showModalAuth(): void {
+  showModalAuth(to: 'login'|'register'|'init'): void {
     const isAuth: boolean = this.userActive ? true : false;
-    this.isAuthenticatedEmitter.emit(isAuth);
+    this.isAuthenticatedEmitter.emit({ isAuth, to });
   }
 
   get getUserActive(): User {
-    return this.userActive;
+    return this.userActive as User;
   }
 
   login(data: ILogin): Observable<IResponseLogin> {
     const url = `${base_url}/auth/login`;
     return this.http.post<IResponseLogin>(url, data).pipe(map(resp => {
       this.setUserActiveInfo(resp);
-      this.isAuthenticatedEmitter.emit(true);
+      this.isAuthenticatedEmitter.emit({isAuth: true});
       const { user } = resp;
       this.settingService.setTheme(user.darkMode ? 'dark' : 'light');
       return resp;
     }));
+  }
+
+  logout(): void {
+    Storage.deleteSessionStorage('x-token');
+    this.userActive = null;
+    this.isAuthenticatedEmitter.emit({ isAuth: false, to: 'hide' });
   }
 
   validateToken() {
@@ -68,21 +75,23 @@ export class AuthService {
     Storage.deleteSessionStorage('x-token');
     Storage.saveSessionStorage('x-token', resp.token);
     this.userActive = resp.user;
-    this.showModalAuth();
+    this.showModalAuth('init');
   }
 
   signIn(data: ILogin): Observable<Boolean> {
     const url = `${base_url}/user`;
     return this.http.post<IResponseLogin>(url, data).pipe(map(resp => {
       this.setUserActiveInfo(resp);
-      this.isAuthenticatedEmitter.emit(true);
+      this.isAuthenticatedEmitter.emit({isAuth: true});
       return resp.ok;
     }))
   }
 
   setNewUserInfo(name: string, lastName: string): void {
-    this.userActive.name = name;
-    this.userActive.lastName = lastName
+    if(this.userActive) {
+      this.userActive.name = name;
+      this.userActive.lastName = lastName
+    }
   }
 
 }

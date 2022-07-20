@@ -115,6 +115,11 @@ body.dark {
   border: none;
 }
 
+.btn.btn-danger {
+  background-color: var(--secondary-color);
+  border: none;
+}
+
 .btn.btn-lg {
   height: 50px;
   font-size: 18px;

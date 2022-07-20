@@ -1,7 +1,7 @@
 <form [formGroup]="userForm" (submit)="updateUserInfo()">
   <div class="input-group">
-    <label for="email" class="floating">
-      <input formControlName="email" type="text" id="email" placeholder="email">
+    <label for="email-input" class="floating">
+      <input formControlName="email" type="text" id="email-input" placeholder="email">
       <span>Email</span>
     </label>
     <div *ngIf="validateForm('email')" class="text-error">

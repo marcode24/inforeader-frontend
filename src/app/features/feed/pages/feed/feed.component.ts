@@ -58,7 +58,7 @@ export class FeedComponent implements OnInit {
 
   saveFeed(id: string) {
     if(!this.authService.isAuthenticated()) {
-      return this.authService.showModalAuth();
+      return this.authService.showModalAuth('init');
     }
     this.saveFeedSub.next(id);
   }

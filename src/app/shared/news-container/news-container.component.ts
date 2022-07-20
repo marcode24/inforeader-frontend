@@ -40,7 +40,7 @@ export class NewsContainerComponent implements OnInit {
 
   saveFeed(id: string){
     if(!this.isAuthenticated) {
-      return this.authService.showModalAuth();
+      return this.authService.showModalAuth('init');
     }
     this.saveFeedSub.next(id);
   }

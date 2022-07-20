@@ -19,4 +19,12 @@ export class SettingsComponent implements OnInit {
     return this.authService.isAuthenticated();
   }
 
+  showModal(to: 'login'|'register'): void {
+    this.authService.showModalAuth(to);
+  }
+
+  logOut(): void {
+    this.authService.logout();
+  }
+
 }

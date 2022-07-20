@@ -26,7 +26,7 @@ export class WebsitesCardComponent implements OnInit {
 
   subscribeWebsite(id: string){
     if(!this.isAuthenticated) {
-      return this.authService.showModalAuth();
+      return this.authService.showModalAuth('init');
     }
     this.userService.modifyPreferences(id, 'subscription').subscribe(resp => {
       this.websites.map(website => {

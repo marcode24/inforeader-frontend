@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuthenticated();
     this.loadingNews.next(true);
-    this.isAuthenticatedSub = this.authService.isAuthenticatedEmitter.subscribe(resp => resp ? this.resetDataInitial(): '');
+    this.isAuthenticatedSub = this.authService.isAuthenticatedEmitter.subscribe(({isAuth}) => isAuth ? this.resetDataInitial(): '');
   }
 
   resetDataInitial() {
@@ -92,9 +92,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onScroll() {
-    this.skip += this.limit;
+    this. skip += this.limit;
     if(!this.isAuthenticated && this.skip >= this.limit) {
-      return this.authService.showModalAuth();
+      return this.authService.showModalAuth('init');
     }
     this.getFeeds().subscribe(feeds => this.feeds = [...this.feeds, ...feeds]);
   }
