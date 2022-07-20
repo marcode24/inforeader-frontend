@@ -4,11 +4,15 @@ import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 import { ILogin } from '@interfaces/login.interface';
-import { IResponseLogin } from '@interfaces/response.interface';
-import Storage from "@utils/storage.util";
-import { User } from '@models/user.model';
-import { SettingService } from './setting.service';
 import { IModalAuth } from '@interfaces/modal.interface';
+import { IResponseLogin } from '@interfaces/response.interface';
+
+import Storage from "@utils/storage.util";
+
+import { User } from '@models/user.model';
+
+import { SettingService } from './setting.service';
+
 
 const base_url = environment.base_url;
 

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { debounceTime, Subject, Subscription } from 'rxjs';
 
 import { WebsiteService } from '@services/website.service';
 
 import { Website } from '@models/website.model';
+
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
 
@@ -11,36 +13,49 @@ import { UserService } from '@services/user.service';
   templateUrl: './websites.component.html',
   styleUrls: ['./websites.component.css']
 })
-export class WebsitesComponent implements OnInit {
+export class WebsitesComponent implements OnInit, OnDestroy {
 
   public websites: Website[];
-  private isAuthenticated: boolean;
+  private websiteSub: Subscription;
+  private loadingWebsites: Subject<boolean> = new Subject();
+  public isLoading: boolean = false;
 
   constructor(
     private websiteService: WebsiteService,
     private authService: AuthService,
     private userService: UserService
-  ) { }
+  ) {
+    this.isLoading = true;
+    this.loadingWebsites.pipe(debounceTime(1000)).subscribe(() => this.getWebsites());
+  }
+
+  ngOnDestroy(): void {
+    this.websiteSub.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
-    this.getWebsites();
+    this.loadingWebsites.next(true);
+    this.websiteSub = this.authService.isAuthenticatedEmitter.subscribe(({isAuth}) =>{
+      if(isAuth) {
+        this.isLoading = true;
+        this.loadingWebsites.next(true);
+      }
+    });
   }
 
   getWebsites(): void {
     this.websiteService.getWebsites(true).subscribe({
       next: (websites) => {
         this.websites = websites;
-        console.log(this.websites);
       },
-      error: (e) => {
-        console.log(e);
+      complete: () => {
+        this.isLoading = false;
       }
     })
   }
 
   subscribeWebsite(id: string){
-    if(!this.isAuthenticated) {
+    if(!this.authService.isAuthenticated()) {
       return this.authService.showModalAuth('init');
     }
     this.userService.modifyPreferences(id, 'subscription').subscribe(resp => {
