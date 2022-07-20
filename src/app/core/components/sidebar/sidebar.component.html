@@ -1,6 +1,7 @@
 <nav class="sidebar">
   <div class="logo-details">
-    <i class='bx bx-news icon'></i>
+    <img src="/assets/logo.png" alt="logo" srcset="">
+    <!-- <i class='bx bx-news icon'></i> -->
     <span class="logo_name">InfoReader</span>
   </div>
   <ul class="nav-list">
@@ -41,9 +42,7 @@
     </div>
     <div *ngIf="isAuthenticated" routerLink="/settings" class="profile-details">
       <figure class="box-image">
-        <img
-          src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
-          alt="img-user">
+        <img src="https://res.cloudinary.com/dfeujtobk/image/upload/v1598123661/user_xzklt6.png" alt="img-user">
       </figure>
       <span class="username"> {{ getName }} </span>
     </div>

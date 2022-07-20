@@ -7,7 +7,6 @@ import { SettingService } from '@services/setting.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
   constructor(
     private settingService: SettingService,
   ) {

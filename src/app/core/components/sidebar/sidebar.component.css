@@ -20,17 +20,18 @@ nav .logo-details {
   align-items: center;
   position: relative;
   opacity: 1;
+  gap: 5px;
 }
 
-nav .logo-details .icon {
+nav .logo-details img {
   opacity: 1;
   transition: 0.5s;
-  color: var(--primary-color);
+  max-width: 3.2rem;
 }
 
 nav .logo-details span.logo_name {
   color: var(--primary-color);
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 600;
   opacity: 1;
   transition: 0.5s;
@@ -218,6 +219,11 @@ nav .profile {
 
   nav li .tooltip {
     display: block;
+  }
+
+  nav .logo-details {
+    gap: 0;
+    justify-content: center;
   }
 
   nav .logo-details .logo_name,
