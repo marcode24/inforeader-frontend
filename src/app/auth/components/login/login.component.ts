@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
 
   loadForm() {
     this.loginForm = this.fb.group({
-      email: ['marco24cruz08@gmail.com', Validators.required],
-      password: ['Mysecret123$', Validators.required]
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 

@@ -42,7 +42,7 @@
     </div>
     <div *ngIf="isAuthenticated" routerLink="/settings" class="profile-details">
       <figure class="box-image">
-        <img src="https://res.cloudinary.com/dfeujtobk/image/upload/v1598123661/user_xzklt6.png" alt="img-user">
+        <img [src]="userActive.image" alt="img-user">
       </figure>
       <span class="username"> {{ getName }} </span>
     </div>
