@@ -22,6 +22,11 @@ const routes: Routes = [
     path: 'settings',
     component: FeaturesComponent,
     loadChildren: () => import('./settings/settings.routing').then(m => m.SettingsRoutingModule),
+  },
+  {
+    path: 'search',
+    component: FeaturesComponent,
+    loadChildren: () => import('./search/search.routing').then(m => m.SearchRoutingModule),
   }
 ];
 

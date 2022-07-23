@@ -21,6 +21,7 @@ nav .logo-details {
   position: relative;
   opacity: 1;
   gap: 5px;
+  cursor: pointer;
 }
 
 nav .logo-details img {
@@ -69,6 +70,10 @@ nav li {
   margin: 0;
   list-style: none;
   height: 55px;
+}
+
+nav li.mobile {
+  display: none;
 }
 
 nav li .tooltip {
@@ -221,6 +226,10 @@ nav .profile {
     display: block;
   }
 
+  nav li.mobile {
+    display: block;
+  }
+
   nav .logo-details {
     gap: 0;
     justify-content: center;
@@ -286,6 +295,11 @@ nav .profile {
     bottom: 0;
     justify-content: space-evenly;
   }
+
+  /* nav li {
+    padding: 10px 0;
+  } */
+
   nav li .tooltip {
     display: none;
   }

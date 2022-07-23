@@ -10,6 +10,7 @@ import { WebsiteModule } from './website/website.module';
 import { AuthModule } from 'app/auth/auth.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { HomeModule } from './home/home.module';
+import { SearchModule } from './search/search.module';
 import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SettingsModule } from './settings/settings.module';
     AuthModule,
     HomeModule,
     SharedModule,
-    SettingsModule
+    SettingsModule,
+    SearchModule
   ]
 })
 export class FeaturesModule { }

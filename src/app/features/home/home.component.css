@@ -13,6 +13,18 @@
   margin-top: 0.5rem;
 }
 
+.top-search {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: inherit;
+  min-height: 70px;
+}
+
+.top-search app-search-input {
+  width: 100%;
+}
+
 @media (max-width: 1200px) {
   .home-section .recently .news {
     grid-template-columns: repeat(1, 100%);

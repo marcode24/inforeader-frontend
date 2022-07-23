@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { debounceTime, forkJoin, map, Observable, Subject, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { Feed } from '@models/feed.model';
 import { Website } from '@models/website.model';
@@ -17,20 +18,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   private loadingNews: Subject<boolean> = new Subject();
   public isLoading: boolean = true;
   private isAuthenticated: boolean = false;
-
   private skip: number = 0;
   private limit: number = 10;
-
   public websites: Website[] = [];
   public feeds: Feed[] = [];
   public recentFeed: Feed;
-
   private isAuthenticatedSub: Subscription;
-
   constructor(
     private feedService: FeedService,
     private websiteService: WebsiteService,
     private authService: AuthService,
+    private router: Router
   ) {
     this.loadingNews.pipe(debounceTime(1000)).subscribe(() => this.getDataInitial());
    }
@@ -79,11 +77,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private setRecentFeed(index: number): void {
     if(index < this.feeds.length) {
       const item = this.feeds[index];
-      if(!item.image || item.image === '') {
-        return this.setRecentFeed(index + 1);
-      } else {
-        this.recentFeed = item;
-      }
+      (!item.image || item.image === '') ? this.setRecentFeed(index + 1): this.recentFeed = item;
     }
   }
 
@@ -92,7 +86,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onScroll() {
-    this. skip += this.limit;
+    this.skip += this.limit;
     if(!this.isAuthenticated && this.skip >= this.limit) {
       return this.authService.showModalAuth('init');
     }
@@ -101,6 +95,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   get getSkip(): number {
     return this.skip;
+  }
+
+  search(value: string): void {
+    this.router.navigate(['/search'], { queryParams: { q: value } });
   }
 
 }
