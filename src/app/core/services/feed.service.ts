@@ -42,7 +42,6 @@ export class FeedService {
     const headers = !isAuthenticated ? {} : this.headers;
     return this.http.get<IResponseFeed>(url, headers)
       .pipe(map(resp => this.mapInUserResource(resp.feeds) as Feed[]));
-
   }
 
   getFeed(id: string): Observable<Feed> {
@@ -55,6 +54,11 @@ export class FeedService {
     const url = `${base_url}/feed/byUser/saved?skip=${skip}&limit=${limit}`;
     return this.http.get<IResponseFeed>(url, this.headers)
       .pipe(map((resp) => this.mapInUserResource(resp.feeds) as Feed[]));
+  }
+
+  searchFeeds(skip = 0, limit = 10, query: string): Observable<Feed[]> {
+    const url = `${base_url}/feed/search?skip=${skip}&limit=${limit}&q=${query}`;
+    return this.http.get<IResponseFeed>(url).pipe(map(resp => resp.feeds));
   }
 
   private mapInUserResource(feeds: Feed[] | Feed): Feed[] | Feed {

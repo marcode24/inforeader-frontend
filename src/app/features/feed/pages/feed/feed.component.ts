@@ -31,10 +31,10 @@ export class FeedComponent implements OnInit {
     this.saveFeedSub.pipe(
       debounceTime(250))
       .subscribe((idFeed) => this.updatePreferences(idFeed)
-    );
-  }
+      );
+    }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
     this.activatedRoute.params.subscribe(({ feedID }) => this.loadData(feedID));
   }
 

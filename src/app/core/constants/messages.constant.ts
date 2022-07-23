@@ -11,4 +11,8 @@ export const messages: IMessage[] = [
    message: 'Here you can find your news saved',
    imagePath: `${pathRelative}/saved.svg`,
   },
+  {
+    message: 'Sorry, we could not find any results',
+    imagePath: `${pathRelative}/no-data.svg`
+  }
 ];

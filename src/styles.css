@@ -34,6 +34,7 @@ body.dark {
   --bg-skeleton-2: #2e2c2c;
   --text-shadow-color: #000000;
   --bg-blur: hsla(0, 0%, 10%, 0.6);
+  --border-input: 1px solid #333639;
 }
 
 :root {
@@ -53,6 +54,7 @@ body.dark {
   --bg-skeleton-2: #cdcdcd;
   --text-shadow-color: #e6e6e6;
   --bg-blur: hsla(0, 0%, 100%, 0.8);
+  --border-input: none;
 }
 
 ::-webkit-scrollbar {

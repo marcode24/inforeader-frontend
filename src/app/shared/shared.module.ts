@@ -8,6 +8,7 @@ import { ButtonTopComponent } from './button-top/button-top.component';
 import { ToggleThemeComponent } from './toggle-theme/toggle-theme.component';
 import { NewCardRecentComponent } from './new-card-recent/new-card-recent.component';
 import { NoFeedsComponent } from './no-feeds/no-feeds.component';
+import { SearchInputComponent } from './search-input/search-input.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NoFeedsComponent } from './no-feeds/no-feeds.component';
     ToggleThemeComponent,
     NewCardRecentComponent,
     NoFeedsComponent,
+    SearchInputComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { NoFeedsComponent } from './no-feeds/no-feeds.component';
     NewsContainerComponent,
     ButtonTopComponent,
     ToggleThemeComponent,
-    NoFeedsComponent
+    NoFeedsComponent,
+    SearchInputComponent
   ]
 })
 export class SharedModule { }

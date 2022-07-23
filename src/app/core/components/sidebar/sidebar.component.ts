@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { User } from '@models/user.model';
@@ -20,6 +21,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
+    private router: Router
   ) {
     this.userActive = authService.getUserActive;
   }
@@ -56,6 +58,10 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   showModal(to: 'login'|'register'): void {
     this.authService.showModalAuth(to);
+  }
+
+  goToHome(): void  {
+    this.router.navigate(['/']);
   }
 
 }
