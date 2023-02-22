@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "lint:fix": "npx eslint src/**/*.{js,jsx,ts,tsx,html} --quiet --fix",
-    "prepare": "husky install"
+    "prepare": "npx husky install"
   },
   "private": true,
   "dependencies": {
