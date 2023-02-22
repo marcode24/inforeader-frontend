@@ -2,10 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 
-import Storage from '@utils/storage.util';
-import { IUser } from '@interfaces/user.interface';
-import { map, Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+
 import { IResponseUser } from '@interfaces/response.interface';
+import { IUser } from '@interfaces/user.interface';
+
+import Storage from '@utils/storage.util';
+
 import { AuthService } from './auth.service';
 
 const base_url = environment.base_url;

@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { IsAuthGuard } from "@guards/is-auth.guard";
+
 import { HomeComponent } from "./home.component";
 import { ExploreComponent } from "./pages/explore/explore.component";
 

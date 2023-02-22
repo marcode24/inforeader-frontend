@@ -1,29 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { Subject, debounceTime } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
 import { SettingService } from '@services/setting.service';
 import { UserService } from '@services/user.service';
-import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-toggle-theme',
   templateUrl: './toggle-theme.component.html',
   styleUrls: ['./toggle-theme.component.css']
 })
-export class ToggleThemeComponent implements OnInit {
+export class ToggleThemeComponent {
   private themeChanged: Subject<boolean> = new Subject();
   constructor(
     private settingService: SettingService,
     private userService: UserService,
     private authService: AuthService,
   ) {
-    this.themeChanged.pipe(debounceTime(800)).subscribe(checked => this.userService.setTheme(checked));
+    this.themeChanged.pipe(debounceTime(800))
+      .subscribe(checked => this.userService.setTheme(checked));
   }
 
-  ngOnInit(): void {
-  }
-
-  changeTheme(event: any) {
+  changeTheme(event: HTMLInputElement) {
     const checked = event.checked;
     if(this.authService.isAuthenticated()) {
       this.themeChanged.next(checked);

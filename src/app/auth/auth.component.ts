@@ -1,7 +1,15 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
+
 import { IModalAuth } from '@interfaces/modal.interface';
 
 @Component({
@@ -15,9 +23,9 @@ export class AuthComponent implements OnInit, OnDestroy {
   @ViewChild('modalAuth') modalAuth: ElementRef;
   private bodyElement = document.body as HTMLBodyElement;
 
-  public showLogin: boolean = false;
-  public showMore: boolean = true;
-  private modalOpen: boolean = false;
+  public showLogin = false;
+  public showMore = true;
+  private modalOpen = false;
 
   constructor(private authService: AuthService) {}
 
@@ -26,7 +34,9 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticatedEmitter.subscribe(({ to, isAuth }) => !isAuth && to !== 'hide' ? this.openModal({to, isAuth}) : '');
+    this.authSubscription = this.authService.isAuthenticatedEmitter
+      .subscribe(({ to, isAuth }) =>
+      !isAuth && to !== 'hide' ? this.openModal({to, isAuth}) : '');
   }
 
   openModal(options: IModalAuth): void {
@@ -57,7 +67,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:keyup.esc', ['$event'])
-  onKeyup(event: any) {
+  onKeyup() {
     if(this.modalOpen) {
         this.closeModal();
       }

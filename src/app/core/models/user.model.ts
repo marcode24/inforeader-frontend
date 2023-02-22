@@ -1,5 +1,3 @@
-import { Website } from "./website.model";
-
 export class User {
   constructor(
     public email: string,

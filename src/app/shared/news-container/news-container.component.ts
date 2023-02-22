@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { debounceTime, Subject } from 'rxjs';
 
-import { Feed } from '@models/feed.model';
+import { Subject, debounceTime } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
+
+import { Feed } from '@models/feed.model';
 
 @Component({
   selector: 'app-news-container',
@@ -13,7 +14,7 @@ import { UserService } from '@services/user.service';
   styleUrls: ['./news-container.component.css']
 })
 export class NewsContainerComponent implements OnInit {
-  private isAuthenticated: boolean = false;
+  private isAuthenticated = false;
   @Input() feeds: Feed[] = [];
   @Input() recentFeed: Feed;
   @Output() moreItems: EventEmitter<boolean> = new EventEmitter();
@@ -38,7 +39,7 @@ export class NewsContainerComponent implements OnInit {
     this.router.navigate([`/feed/${id}`]);
   }
 
-  saveFeed(id: string){
+  saveFeed(id: string) {
     if(!this.isAuthenticated) {
       return this.authService.showModalAuth('init');
     }
@@ -46,18 +47,18 @@ export class NewsContainerComponent implements OnInit {
   }
 
   updatePreferences(idFeed: string): void {
-    this.userService.modifyPreferences(idFeed, 'saved').subscribe((resp) => {
+    this.userService.modifyPreferences(idFeed, 'saved').subscribe(() => {
       this.feeds.map(feed => {
         if(feed._id === idFeed) {
           feed.inUser = !feed.inUser;
         }
-      })
-    })
+      });
+    });
   }
 
-  changeStyle(element: any, change: boolean): void {
+  changeStyle(element: HTMLElement, change: boolean): void {
     if(change) element.classList.add('bxs-bookmark');
-    else element.classList.remove('bxs-bookmark')
+    else element.classList.remove('bxs-bookmark');
   }
 
   onScroll(): void {

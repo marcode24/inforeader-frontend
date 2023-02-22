@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, forkJoin, Subject } from 'rxjs';
 
-import { Feed } from '@models/feed.model';
+import { Subject, debounceTime, forkJoin } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
 import { FeedService } from '@services/feed.service';
 import { UserService } from '@services/user.service';
+
+import { Feed } from '@models/feed.model';
+
 // use encapsulation to styles works correctly from css files
 @Component({
   selector: 'app-feed',
@@ -17,7 +19,7 @@ import { UserService } from '@services/user.service';
 export class FeedComponent implements OnInit {
   public feed: Feed;
   public recentsFeed: Feed[];
-  public isLoading: boolean = true;
+  public isLoading = true;
 
   private saveFeedSub: Subject<string> = new Subject();
 
@@ -49,7 +51,7 @@ export class FeedComponent implements OnInit {
         this.recentsFeed = recentFeeds;
       },
       complete: () => this.isLoading = false,
-    })
+    });
   }
 
   goToFeed(id: string): void {
@@ -66,12 +68,12 @@ export class FeedComponent implements OnInit {
   updatePreferences(idFeed: string): void {
     this.userService.modifyPreferences(idFeed, 'saved').subscribe(() => {
       this.feed.inUser = !this.feed.inUser;
-    })
+    });
   }
 
-  changeStyle(element: any, change: boolean): void {
+  changeStyle(element: HTMLElement, change: boolean): void {
     if(change) element.classList.add('bxs-bookmark');
-    else element.classList.remove('bxs-bookmark')
+    else element.classList.remove('bxs-bookmark');
   }
 
 }

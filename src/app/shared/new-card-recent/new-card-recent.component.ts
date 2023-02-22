@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
 import { Feed } from '@models/feed.model';
 
 @Component({
@@ -6,13 +7,8 @@ import { Feed } from '@models/feed.model';
   templateUrl: './new-card-recent.component.html',
   styleUrls: ['./new-card-recent.component.css']
 })
-export class NewCardRecentComponent implements OnInit {
+export class NewCardRecentComponent {
 
   @Input() feed: Feed;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
-import { map, Observable, Subject } from 'rxjs';
+
+import { Observable, Subject, map } from 'rxjs';
+
+import { Feed } from '@models/feed.model';
 
 import { IResponseFeed } from '@interfaces/response.interface';
-import { Feed } from '@models/feed.model';
+
 import Storage from '@utils/storage.util';
+
 import { AuthService } from './auth.service';
 
 const base_url = environment.base_url;
@@ -23,7 +27,7 @@ export class FeedService {
     private authService: AuthService,
   ) { }
 
-  public changeToExplore(value: boolean): void{
+  public changeToExplore(value: boolean): void {
     this.changeNews.next(value);
   }
 
@@ -35,7 +39,7 @@ export class FeedService {
     };
   }
 
-  getFeeds(skip = 0, limit = 10, isAuthenticated: boolean = false): Observable<Feed[]> {
+  getFeeds(skip = 0, limit = 10, isAuthenticated = false): Observable<Feed[]> {
     const url = (!isAuthenticated) ?
     `${base_url}/feed?skip=${skip}&limit=${limit}` :
     `${base_url}/feed/byUser/subscription?skip=${skip}&limit=${limit}`;

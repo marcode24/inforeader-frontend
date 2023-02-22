@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { RegexExpressions } from '@utils/regex.util';
-
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
+
 import { User } from '@models/user.model';
+
 import { IUser } from '@interfaces/user.interface';
+
+import { RegexExpressions } from '@utils/regex.util';
 
 @Component({
   selector: 'app-user-form',
@@ -34,7 +36,10 @@ export class UserFormComponent implements OnInit {
     const { email, name, lastName } = this.userActive;
     this.userForm = this.fb.group({
       email: [email || ''],
-      name: [name || '', [Validators.required, Validators.pattern(this.regexExpression.TEXT)]],
+      name: [name || '', [
+        Validators.required,
+        Validators.pattern(this.regexExpression.TEXT)]
+      ],
       lastName: [lastName || '', [Validators.pattern(this.regexExpression.TEXT)]],
     });
   }
@@ -44,17 +49,17 @@ export class UserFormComponent implements OnInit {
       const userData: IUser = {
         name: this.userForm.get('name')?.value,
         lastName: this.userForm.get('lastName')?.value,
-      }
+      };
       this.userService.updateUserInfo(userData).subscribe({
         next: (resp) => {
           if(resp) {
-            this.message = 'information updated correctly'
+            this.message = 'information updated correctly';
           }
         },
         error: () => {
-          this.message = 'something went wrong, try again'
+          this.message = 'something went wrong, try again';
         },
-      })
+      });
     }
   }
 

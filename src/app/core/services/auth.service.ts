@@ -1,7 +1,10 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
-import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { EventEmitter, Injectable } from '@angular/core';
+import { environment } from 'environments/environment';
+
+import { Observable, catchError, map, of } from 'rxjs';
+
+import { User } from '@models/user.model';
 
 import { ILogin } from '@interfaces/login.interface';
 import { IModalAuth } from '@interfaces/modal.interface';
@@ -9,10 +12,7 @@ import { IResponseLogin } from '@interfaces/response.interface';
 
 import Storage from "@utils/storage.util";
 
-import { User } from '@models/user.model';
-
 import { SettingService } from './setting.service';
-
 
 const base_url = environment.base_url;
 
@@ -72,7 +72,7 @@ export class AuthService {
     return this.http.get<IResponseLogin>(url, this.headers).pipe(map(resp => {
       this.setUserActiveInfo(resp);
       return true;
-    }), catchError(err => of(false)));
+    }), catchError(() => of(false)));
   }
 
   private setUserActiveInfo(resp: IResponseLogin): void {
@@ -82,19 +82,19 @@ export class AuthService {
     this.showModalAuth('init');
   }
 
-  signIn(data: ILogin): Observable<Boolean> {
+  signIn(data: ILogin): Observable<boolean> {
     const url = `${base_url}/user`;
     return this.http.post<IResponseLogin>(url, data).pipe(map(resp => {
       this.setUserActiveInfo(resp);
       this.isAuthenticatedEmitter.emit({isAuth: true});
       return resp.ok;
-    }))
+    }));
   }
 
   setNewUserInfo(name: string, lastName: string): void {
     if(this.userActive) {
       this.userActive.name = name;
-      this.userActive.lastName = lastName
+      this.userActive.lastName = lastName;
     }
   }
 

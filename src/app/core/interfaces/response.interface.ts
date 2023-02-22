@@ -1,5 +1,6 @@
 import { User } from "@models/user.model";
 import { Website } from "@models/website.model";
+
 import { Feed } from "../models/feed.model";
 
 export interface IResponseFeed {
@@ -7,7 +8,7 @@ export interface IResponseFeed {
   feeds: Feed[];
   feed: Feed;
   msg?: string;
-};
+}
 
 export interface IResponseWebsite {
   ok: boolean,
@@ -18,7 +19,7 @@ export interface IResponseLogin {
   ok: boolean,
   token: string,
   user: User,
-};
+}
 
 export interface IResponseUser {
   ok: boolean,

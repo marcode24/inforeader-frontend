@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { debounceTime, Subject, Subscription } from 'rxjs';
 
-import { WebsiteService } from '@services/website.service';
-
-import { Website } from '@models/website.model';
+import { Subject, Subscription, debounceTime } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
+import { WebsiteService } from '@services/website.service';
+
+import { Website } from '@models/website.model';
 
 @Component({
   selector: 'app-websites',
@@ -18,7 +18,7 @@ export class WebsitesComponent implements OnInit, OnDestroy {
   public websites: Website[];
   private websiteSub: Subscription;
   private loadingWebsites: Subject<boolean> = new Subject();
-  public isLoading: boolean = false;
+  public isLoading = false;
 
   constructor(
     private websiteService: WebsiteService,
@@ -51,14 +51,14 @@ export class WebsitesComponent implements OnInit, OnDestroy {
       complete: () => {
         this.isLoading = false;
       }
-    })
+    });
   }
 
-  subscribeWebsite(id: string){
+  subscribeWebsite(id: string) {
     if(!this.authService.isAuthenticated()) {
       return this.authService.showModalAuth('init');
     }
-    this.userService.modifyPreferences(id, 'subscription').subscribe(resp => {
+    this.userService.modifyPreferences(id, 'subscription').subscribe(() => {
       this.websites.map(website => {
         if( website._id === id)
           website.inUser = !website.inUser;

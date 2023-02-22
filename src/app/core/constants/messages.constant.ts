@@ -1,6 +1,6 @@
 import { IMessage } from "@interfaces/message.interface";
 
-const pathRelative: string = '/assets/svg';
+const pathRelative = '/assets/svg';
 
 export const messages: IMessage[] = [
   {

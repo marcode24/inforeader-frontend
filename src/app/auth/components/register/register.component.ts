@@ -1,7 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ILogin } from '@interfaces/login.interface';
+
 import { AuthService } from '@services/auth.service';
+
+import { ILogin } from '@interfaces/login.interface';
+
 import MatchPassword from '@utils/match-password.util';
 import { RegexExpressions } from '@utils/regex.util';
 
@@ -30,13 +33,16 @@ export class RegisterComponent implements OnInit {
   loadForm() {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(this.regexExpressions.EMAIL)]],
-      password: ['', [Validators.required, Validators.pattern(this.regexExpressions.PASSWORD)]],
+      password: ['', [
+        Validators.required,
+        Validators.pattern(this.regexExpressions.PASSWORD)]
+      ],
       password2: ['', [Validators.required]],
     },{
       validators: [
         MatchPassword.match('password', 'password2'),
       ]
-    })
+    });
   }
 
   register() {
@@ -44,7 +50,7 @@ export class RegisterComponent implements OnInit {
       const data: ILogin = {
         email: this.registerForm.get('email')?.value,
         password: this.registerForm.get('password')?.value,
-      }
+      };
       this.authService.signIn(data).subscribe({
         next: () => {
           this.closeModal.emit(true);
@@ -56,11 +62,11 @@ export class RegisterComponent implements OnInit {
             this.message = message;
           }
         }
-      })
+      });
     }
   }
 
-  changePage(): void{
+  changePage(): void {
     this.showLogin.emit(true);
   }
 

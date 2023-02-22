@@ -7,5 +7,5 @@ export class Website {
     public linkFeed: string,
     public _id: string,
     public inUser?: boolean,
-  ) {};
-};
+  ) {}
+}

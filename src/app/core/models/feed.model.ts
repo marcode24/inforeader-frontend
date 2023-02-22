@@ -11,5 +11,5 @@ export class Feed {
     public image: string,
     public website: Website,
     public inUser?: boolean,
-  ) {};
-};
+  ) {}
+}

@@ -1,13 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { debounceTime, forkJoin, map, Observable, Subject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { Feed } from '@models/feed.model';
-import { Website } from '@models/website.model';
+import { Observable, Subject, Subscription, debounceTime, forkJoin, map } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
 import { FeedService } from '@services/feed.service';
 import { WebsiteService } from '@services/website.service';
+
+import { Feed } from '@models/feed.model';
+import { Website } from '@models/website.model';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +17,10 @@ import { WebsiteService } from '@services/website.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private loadingNews: Subject<boolean> = new Subject();
-  public isLoading: boolean = true;
-  private isAuthenticated: boolean = false;
-  private skip: number = 0;
-  private limit: number = 10;
+  public isLoading = true;
+  private isAuthenticated = false;
+  private skip = 0;
+  private limit = 10;
   public websites: Website[] = [];
   public feeds: Feed[] = [];
   public recentFeed: Feed;
@@ -40,7 +41,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuthenticated();
     this.loadingNews.next(true);
-    this.isAuthenticatedSub = this.authService.isAuthenticatedEmitter.subscribe(({isAuth}) => isAuth ? this.resetDataInitial(): '');
+    this.isAuthenticatedSub = this.authService.isAuthenticatedEmitter
+      .subscribe(({isAuth}) => isAuth ? this.resetDataInitial(): '');
   }
 
   resetDataInitial() {
@@ -71,18 +73,21 @@ export class HomeComponent implements OnInit, OnDestroy {
       complete: () => {
         this.isLoading = false;
       }
-    })
+    });
   }
 
   private setRecentFeed(index: number): void {
     if(index < this.feeds.length) {
       const item = this.feeds[index];
-      (!item.image || item.image === '') ? this.setRecentFeed(index + 1): this.recentFeed = item;
+      (!item.image || item.image === '')
+        ? this.setRecentFeed(index + 1)
+        : this.recentFeed = item;
     }
   }
 
   getFeeds(): Observable<Feed[]> {
-    return this.feedService.getFeeds(this.skip, this.limit, this.isAuthenticated).pipe(map(feeds => feeds));
+    return this.feedService.getFeeds(this.skip, this.limit, this.isAuthenticated)
+      .pipe(map(feeds => feeds));
   }
 
   onScroll() {
