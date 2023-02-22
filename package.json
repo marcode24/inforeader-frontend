@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "lint:fix": "npx eslint src/**/*.{js,jsx,ts,tsx,html} --quiet --fix"
+    "lint:fix": "npx eslint src/**/*.{js,jsx,ts,tsx,html} --quiet --fix",
+    "prepare": "npx husky install"
   },
   "private": true,
   "dependencies": {
@@ -51,6 +52,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "karma-mocha-reporter": "^2.2.5",
+    "lint-staged": "^13.1.2",
     "typescript": "~4.5.2",
     "typescript-eslint-parser": "^22.0.0"
   }
