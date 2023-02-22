@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, Observable, Subject } from 'rxjs';
 
-import { Feed } from '@models/feed.model';
+import { Observable, Subject, debounceTime } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
 import { FeedService } from '@services/feed.service';
+
+import { Feed } from '@models/feed.model';
 
 @Component({
   selector: 'app-search',
@@ -13,13 +14,13 @@ import { FeedService } from '@services/feed.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  private skip: number = 0;
-  private limit: number = 10;
-  private query: string = '';
+  private skip = 0;
+  private limit = 10;
+  private query = '';
   private loadingNews: Subject<boolean> = new Subject();
 
   public feeds: Feed[];
-  public isLoading: boolean = true;
+  public isLoading = true;
   constructor(
     private feedService: FeedService,
     private activatedRoute: ActivatedRoute,
@@ -46,7 +47,7 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  getRandomFeeds(): void{
+  getRandomFeeds(): void {
     this.feedService.getFeeds(5, 5, false).subscribe(feeds => {
       this.feeds = feeds;
       this.isLoading = false;
@@ -59,7 +60,7 @@ export class SearchComponent implements OnInit {
     this.searchFeeds().subscribe({
       next: (feeds) => this.feeds =feeds,
       complete: () => this.isLoading = false,
-    })
+    });
   }
 
   resetQuery(value: string): void {
@@ -75,8 +76,9 @@ export class SearchComponent implements OnInit {
 
   onScroll(): void {
     this.skip += this.limit;
-    if(!this.authService.isAuthenticated() && this.query.length > 1 && this.skip >= this.limit) {
-      return this.authService.showModalAuth('init');
+    if(!this.authService.isAuthenticated()
+      && this.query.length > 1 && this.skip >= this.limit) {
+        return this.authService.showModalAuth('init');
     }
     if(this.query.length > 1) {
       this.searchFeeds().subscribe(feeds => this.feeds = [...this.feeds, ...feeds]);

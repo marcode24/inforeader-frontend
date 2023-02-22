@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { AuthService } from '@services/auth.service';
 
 @Component({
@@ -24,8 +25,8 @@ export class LoginComponent implements OnInit {
 
   loadForm() {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['userexample@domain.com', Validators.required],
+      password: ['Mysecret12345$', Validators.required]
     });
   }
 
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
             this.message = message;
           }
         }
-      })
+      });
     }
   }
 

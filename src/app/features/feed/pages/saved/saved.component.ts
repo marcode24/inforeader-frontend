@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Feed } from '@models/feed.model';
+
+import { Observable, Subject, debounceTime, map } from 'rxjs';
+
 import { FeedService } from '@services/feed.service';
-import { debounceTime, map, Observable, Subject } from 'rxjs';
+
+import { Feed } from '@models/feed.model';
 
 @Component({
   selector: 'app-saved',
@@ -9,10 +12,10 @@ import { debounceTime, map, Observable, Subject } from 'rxjs';
   styleUrls: ['./saved.component.css']
 })
 export class SavedComponent implements OnInit {
-  private skip: number = 0;
-  private limit: number = 10;
+  private skip = 0;
+  private limit = 10;
   public feeds: Feed[];
-  public isLoading: boolean = true;
+  public isLoading = true;
   private loadingNews: Subject<boolean> = new Subject();
 
   constructor(
@@ -34,15 +37,15 @@ export class SavedComponent implements OnInit {
   }
 
   getSavedFeeds(): Observable<Feed[]> {
-    return this.feedService.getSavedFeeds(this.skip, this.limit).pipe(map(feeds => feeds));
+    return this.feedService.getSavedFeeds(this.skip, this.limit)
+      .pipe(map(feeds => feeds));
   }
 
   onScroll() {
     this.skip += this.limit;
     this.getSavedFeeds().subscribe(feeds => {
-      console.log({feeds});
       this.feeds = [...this.feeds, ...feeds];
-    })
+    });
   }
 
 }

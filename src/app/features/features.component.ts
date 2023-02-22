@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '@models/user.model';
+import { Component } from '@angular/core';
+
 import { AuthService } from '@services/auth.service';
 import { SettingService } from '@services/setting.service';
+
+import { User } from '@models/user.model';
 
 @Component({
   selector: 'app-features',
   templateUrl: './features.component.html',
   styleUrls: ['./features.component.css']
 })
-export class FeaturesComponent implements OnInit {
+export class FeaturesComponent {
 
-  public isLoading: boolean = true;
+  public isLoading = true;
 
   constructor(
     private authService: AuthService,
@@ -23,7 +25,5 @@ export class FeaturesComponent implements OnInit {
       }
     });
   }
-
-  ngOnInit() {}
 
 }

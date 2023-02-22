@@ -8,11 +8,11 @@ export default class Storage {
     sessionStorage.removeItem(name);
   }
 
-  static getItem(key: string, local: boolean = false): string | any{
+  static getItem(key: string, local = false): string {
     if(!local) {
-      return sessionStorage.getItem(key);
+      return sessionStorage.getItem(key) as string;
     }
-    return localStorage.getItem(key);
+    return localStorage.getItem(key) as string;
   }
 
   static saveLocalStorage(name: string, value: string) {

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { debounceTime, forkJoin, map, Observable, Subject } from 'rxjs';
 
-import { Feed } from '@models/feed.model';
-import { Website } from '@models/website.model';
+import { Observable, Subject, debounceTime, forkJoin, map } from 'rxjs';
 
 import { FeedService } from '@services/feed.service';
 import { WebsiteService } from '@services/website.service';
+
+import { Feed } from '@models/feed.model';
+import { Website } from '@models/website.model';
 
 @Component({
   selector: 'app-explore',
@@ -14,10 +15,10 @@ import { WebsiteService } from '@services/website.service';
 })
 export class ExploreComponent implements OnInit {
   private loadingNews: Subject<boolean> = new Subject();
-  public isLoading: boolean = true;
+  public isLoading = true;
 
-  private skip: number = 0;
-  private limit: number = 10;
+  private skip = 0;
+  private limit = 10;
 
   public websites: Website[] = [];
   public feeds: Feed[] = [];
@@ -49,7 +50,7 @@ export class ExploreComponent implements OnInit {
       complete: () => {
         this.isLoading = false;
       }
-    })
+    });
   }
 
   reloadData() {
@@ -58,7 +59,8 @@ export class ExploreComponent implements OnInit {
   }
 
   getFeeds(): Observable<Feed[]> {
-    return this.feedService.getFeeds(this.skip, this.limit, false).pipe(map(feeds => feeds));
+    return this.feedService.getFeeds(this.skip, this.limit, false)
+      .pipe(map(feeds => feeds));
   }
 
   onScroll() {

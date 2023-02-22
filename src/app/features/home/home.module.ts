@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { HomeComponent } from './home.component';
+import { NgModule } from '@angular/core';
+import { SharedModule } from 'app/shared/shared.module';
+import { SkeletonsModule } from 'app/shared/skeletons/skeletons.module';
 
 import { ComponentsModule } from './components/components.module';
-import { SharedModule } from 'app/shared/shared.module';
+import { HomeComponent } from './home.component';
 import { ExploreComponent } from './pages/explore/explore.component';
-import { SkeletonsModule } from 'app/shared/skeletons/skeletons.module';
 
 @NgModule({
   declarations: [

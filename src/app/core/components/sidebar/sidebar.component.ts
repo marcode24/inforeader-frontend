@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { Subscription } from 'rxjs';
 
-import { User } from '@models/user.model';
-
 import { AuthService } from '@services/auth.service';
+
+import { User } from '@models/user.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,12 +13,12 @@ import { AuthService } from '@services/auth.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
-  private sidebar: any;
-  private wrapper: any;
+  private sidebar: HTMLElement;
+  private wrapper: HTMLElement;
   public userActive: User;
   private userActiveSubscription: Subscription;
 
-  public isAuthenticated: boolean = false;
+  public isAuthenticated = false;
 
   constructor(
     private authService: AuthService,
@@ -31,19 +32,20 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.sidebar = document.querySelector('.sidebar');
-    this.wrapper = document.querySelector('.wrapper');
+    this.sidebar = document.querySelector('.sidebar') as HTMLElement;
+    this.wrapper = document.querySelector('.wrapper') as HTMLElement;
   }
 
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuthenticated();
-    this.userActiveSubscription = this.authService.isAuthenticatedEmitter.subscribe(({isAuth}) => {
-      if(isAuth) {
-        this.setUserInfoActive();
-        this.isAuthenticated = true;
-      } else {
-        this.isAuthenticated = false;
-      }
+    this.userActiveSubscription = this.authService.isAuthenticatedEmitter
+      .subscribe(({isAuth}) => {
+        if(isAuth) {
+          this.setUserInfoActive();
+          this.isAuthenticated = true;
+        } else {
+          this.isAuthenticated = false;
+        }
     });
   }
 

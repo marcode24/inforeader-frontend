@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { messages } from '@constants/messages.constant';
+
 import { IMessage } from '@interfaces/message.interface';
+
+import { messages } from '@constants/messages.constant';
 
 @Component({
   selector: 'app-no-feeds',
@@ -8,10 +10,8 @@ import { IMessage } from '@interfaces/message.interface';
   styleUrls: ['./no-feeds.component.css']
 })
 export class NoFeedsComponent implements OnInit {
-  @Input() messageIndex: number = 0;
+  @Input() messageIndex = 0;
   public messageSelected: IMessage;
-  constructor() {
-  }
 
   ngOnInit(): void {
     this.messageSelected = messages[+this.messageIndex];

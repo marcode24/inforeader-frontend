@@ -6,11 +6,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./search-input.component.css']
 })
 export class SearchInputComponent {
-  @Input() value: string = '';
+  @Input() value = '';
   @Output() search: EventEmitter<string> = new EventEmitter();
   private valueTemp: string;
 
-  setValueTemp(element: any): void {
+  setValueTemp(element: HTMLInputElement): void {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.valueTemp = element.value.trim();

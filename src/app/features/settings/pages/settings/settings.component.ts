@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
 import { AuthService } from '@services/auth.service';
 
 @Component({
@@ -6,14 +7,11 @@ import { AuthService } from '@services/auth.service';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
 
   constructor(
     private authService: AuthService,
   ) { }
-
-  ngOnInit(): void {
-  }
 
   get isAuthenticated(): boolean {
     return this.authService.isAuthenticated();

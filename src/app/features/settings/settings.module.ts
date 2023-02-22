@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { SettingsComponent } from './pages/settings/settings.component';
-
 import { SharedModule } from 'app/shared/shared.module';
+
 import { ComponentsModule } from './components/components.module';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [

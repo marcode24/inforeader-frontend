@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { AuthService } from '@services/auth.service';
+import { UserService } from '@services/user.service';
 
 import { Website } from '@models/website.model';
-
-import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'app-websites-card',
@@ -24,11 +23,11 @@ export class WebsitesCardComponent implements OnInit {
     this.isAuthenticated = this.authService.isAuthenticated();
   }
 
-  subscribeWebsite(id: string){
+  subscribeWebsite(id: string) {
     if(!this.isAuthenticated) {
       return this.authService.showModalAuth('init');
     }
-    this.userService.modifyPreferences(id, 'subscription').subscribe(resp => {
+    this.userService.modifyPreferences(id, 'subscription').subscribe(() => {
       this.websites.map(website => {
         if( website._id === id)
           website.inUser = !website.inUser;

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { SettingService } from '@services/setting.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { SettingService } from '@services/setting.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = 'frontend';
   constructor(
     private settingService: SettingService,
   ) {
@@ -18,4 +20,5 @@ export class AppComponent {
       this.settingService.setTheme(theme as 'dark'|'light');
     }
   }
+
 }
