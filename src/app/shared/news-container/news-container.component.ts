@@ -46,7 +46,7 @@ export class NewsContainerComponent implements OnInit {
   }
 
   updatePreferences(idFeed: string): void {
-    this.userService.modifyPreferences(idFeed, 'saved').subscribe(resp => {
+    this.userService.modifyPreferences(idFeed, 'saved').subscribe((resp) => {
       this.feeds.map(feed => {
         if(feed._id === idFeed) {
           feed.inUser = !feed.inUser;
