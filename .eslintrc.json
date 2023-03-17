@@ -67,6 +67,11 @@
                 "group": "unknown"
               },
               {
+                "pattern": "@faker-js/**",
+                "group": "builtin",
+                "position": "before"
+              },
+              {
                 "pattern": "@services/**",
                 "group": "builtin",
                 "position": "before"
