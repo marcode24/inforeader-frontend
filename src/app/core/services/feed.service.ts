@@ -65,8 +65,8 @@ export class FeedService {
     return this.http.get<IResponseFeed>(url).pipe(map(resp => resp.feeds));
   }
 
-  private mapInUserResource(feeds: Feed[] | Feed): Feed[] | Feed {
-    const userActive = this.authService.getUserActive;
+  public mapInUserResource(feeds: Feed[] | Feed): Feed[] | Feed {
+    const userActive = this.authService.getUserActive();
     if(userActive) {
       const { savedFeeds } = userActive;
       if(Array.isArray(feeds)) {

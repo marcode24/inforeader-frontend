@@ -46,7 +46,7 @@ export class AuthService {
     this.isAuthenticatedEmitter.emit({ isAuth, to });
   }
 
-  get getUserActive(): User {
+  getUserActive(): User {
     return this.userActive as User;
   }
 
