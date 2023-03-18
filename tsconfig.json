@@ -32,6 +32,7 @@
       "@interceptors/*": [ "app/core/interceptors/*" ],
       "@guards/*": [ "app/core/guards/*" ],
       "@constants/*": [ "app/core/constants/*" ],
+      "@mocks/*": [ "app/core/mocks/*" ],
     }
   },
   "angularCompilerOptions": {
