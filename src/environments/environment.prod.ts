@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  base_url: 'https://inforeader-backend.up.railway.app/api/v1',
+  base_url: 'https://info-reader-backend.vercel.app/api/v1',
 };
