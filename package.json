@@ -1,6 +1,16 @@
 {
   "name": "frontend",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "keywords": [
+    "angular",
+    "typescript",
+    "eslint",
+    "rss",
+    "news",
+    "feed",
+    "reader",
+    "aggregator"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
