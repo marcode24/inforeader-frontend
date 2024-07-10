@@ -22,8 +22,8 @@ export class ToggleThemeComponent {
       .subscribe(checked => this.userService.setTheme(checked));
   }
 
-  changeTheme(event: HTMLInputElement) {
-    const checked = event.checked;
+  changeTheme(event: Event): void {
+    const checked = (event.target as HTMLInputElement)?.checked;
     if(this.authService.isAuthenticated()) {
       this.themeChanged.next(checked);
     }

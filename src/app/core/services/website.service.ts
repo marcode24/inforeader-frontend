@@ -24,7 +24,7 @@ export class WebsiteService {
     const url = `${base_url}/website?all=${all}&limit=${limit}&skip=${skip}`;
     return this.http.get<IResponseWebsite>(url).pipe(map(resp => {
       const { websites } = resp;
-      const userActive = this.authService.getUserActive;
+      const userActive = this.authService.getUserActive();
       if(userActive) {
         const { subscriptions } = userActive;
         websites.map(website => website.inUser = subscriptions?.includes(website._id));

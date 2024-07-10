@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     private authService: AuthService,
     private router: Router
   ) {
-    this.userActive = authService.getUserActive;
+    this.userActive = authService.getUserActive();
   }
 
   ngOnDestroy(): void {
@@ -50,7 +50,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   setUserInfoActive(): void {
-    this.userActive = this.authService.getUserActive;
+    this.userActive = this.authService.getUserActive();
   }
 
   get getName(): string {
