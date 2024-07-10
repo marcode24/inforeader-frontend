@@ -19,7 +19,7 @@ export class FeaturesComponent {
     private settingService: SettingService ) {
     authService.validateToken().subscribe(() => {
       this.isLoading = false;
-      const userActive: User = authService.getUserActive;
+      const userActive: User = authService.getUserActive();
       if(userActive) {
         settingService.setTheme(userActive.darkMode ? 'dark' : 'light');
       }

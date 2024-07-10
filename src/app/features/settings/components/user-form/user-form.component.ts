@@ -28,7 +28,7 @@ export class UserFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userActive = this.authService.getUserActive;
+    this.userActive = this.authService.getUserActive();
     this.loadForm();
   }
 
