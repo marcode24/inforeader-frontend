@@ -72,6 +72,11 @@
                 "position": "before"
               },
               {
+                "pattern": "@customTypes/**",
+                "group": "builtin",
+                "position": "before"
+              },
+              {
                 "pattern": "@services/**",
                 "group": "builtin",
                 "position": "before"

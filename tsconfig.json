@@ -33,6 +33,7 @@
       "@guards/*": [ "app/core/guards/*" ],
       "@constants/*": [ "app/core/constants/*" ],
       "@mocks/*": [ "app/core/mocks/*" ],
+      "@customTypes/*": [ "app/core/types/*" ],
     }
   },
   "angularCompilerOptions": {
