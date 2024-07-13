@@ -25,7 +25,7 @@ body.dark {
   --bg-color: #000;
   --bg-color-card: #16181c;
   --bg-color-card-2: #000;
-  --bg-color-secondary: #e7e9ea;
+  --bg-color-secondary: #040a0d;
   --font-color-primary: #e7e9ea;
   --box-shadow: none;
   --bg-hover: rgb(231, 233, 234, 0.1);
@@ -40,9 +40,9 @@ body.dark {
 :root {
   --primary-color: #0098fa;
   --secondary-color: #e66d9b;
-  --bg-color: #f4faff;
-  --bg-color-card: #ffffff;
-  --bg-color-card-2: #ffffff;
+  --bg-color: #fafafa;
+  --bg-color-card: #fafafa;
+  --bg-color-card-2: #fafafa;
   --bg-color-scroll: #a5a5a5;
   --bg-color-secondary: #262626;
   --bg-button-follow: transparent;
@@ -85,7 +85,8 @@ body.dark {
   background: var(--bg-color-card);
   color: var(--font-color-primary);
   border-radius: 1rem;
-  box-shadow: var(--box-shadow);
+  border: 1px solid #c1c1c1;
+  /* box-shadow: var(--box-shadow); */
 }
 
 .btn {

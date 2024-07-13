@@ -10,6 +10,8 @@ export class Feed {
     public link: string,
     public image: string,
     public website: Website,
+    public likes: number,
     public inUser?: boolean,
+    public liked?: boolean,
   ) {}
 }
