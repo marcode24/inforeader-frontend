@@ -1,41 +1,40 @@
 <nav class="sidebar">
   <div class="logo-details " (click)="goToHome()">
     <img src="/assets/logo.png" alt="logo" srcset="">
-    <!-- <i class='bx bx-news icon'></i> -->
     <span class="logo_name">InfoReader</span>
   </div>
   <ul class="nav-list">
     <li>
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <i class='bx bx-news'></i>
+        <i class='bx bx-home-circle' routerLinkActive="bxs-home-circle" [routerLinkActiveOptions]="{exact: true}"></i>
         <span class="links_name">News</span>
       </a>
       <span class="tooltip">News</span>
     </li>
     <li>
       <a routerLink="/explore" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <i class='bx bx-world'></i>
+        <i class='bx bx-compass' routerLinkActive="bxs-compass" [routerLinkActiveOptions]="{exact: true}"></i>
         <span class="links_name">Explore</span>
       </a>
       <span class="tooltip">Explore</span>
     </li>
     <li class="mobile">
       <a routerLink="/search" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <i class='bx bx-search'></i>
+        <i class='bx bx-search' routerLinkActive="bxs-search" [routerLinkActiveOptions]="{exact: true}"></i>
         <span class="links_name">Search</span>
       </a>
       <span class="tooltip">Search</span>
     </li>
     <li>
       <a routerLink="/feed/saved" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <i class='bx bx-bookmark'></i>
+        <i class='bx bx-bookmark' routerLinkActive="bxs-bookmark" [routerLinkActiveOptions]="{exact: true}"></i>
         <span class="links_name">Saved</span>
       </a>
       <span class="tooltip">Saved</span>
     </li>
     <li>
       <a routerLink="/settings" routerLinkActive="active">
-        <i class='bx bx-cog'></i>
+        <i class='bx bx-cog' routerLinkActive="bxs-cog" [routerLinkActiveOptions]="{exact: true}"></i>
         <span class="links_name">Settings</span>
       </a>
       <span class="tooltip">Settings</span>
