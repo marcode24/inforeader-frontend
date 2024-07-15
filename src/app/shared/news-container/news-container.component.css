@@ -98,7 +98,7 @@
 .details-wrapper .options .separator {
   height: 24px;
   width: 0.1rem;
-  background: #c1c1c1;
+  background: var(--separator-color);
 }
 
 .details-wrapper .options .option {

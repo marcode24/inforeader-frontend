@@ -34,7 +34,8 @@ body.dark {
   --bg-skeleton-2: #2e2c2c;
   --text-shadow-color: #000000;
   --bg-blur: hsla(0, 0%, 10%, 0.6);
-  --border-input: 1px solid #333639;
+  --border: 1px solid #3e3e3e;
+  --separator-color: #3e3e3e;
 }
 
 :root {
@@ -54,7 +55,8 @@ body.dark {
   --bg-skeleton-2: #cdcdcd;
   --text-shadow-color: #e6e6e6;
   --bg-blur: hsla(0, 0%, 100%, 0.8);
-  --border-input: none;
+  --border: 1px solid #c1c1c1;
+  --separator-color: #c1c1c1;
 }
 
 ::-webkit-scrollbar {
@@ -84,8 +86,7 @@ body.dark {
   background: var(--bg-color-card);
   color: var(--font-color-primary);
   border-radius: 1rem;
-  border: 1px solid #c1c1c1;
-  /* box-shadow: var(--box-shadow); */
+  border: var(--border);
 }
 
 .btn {
