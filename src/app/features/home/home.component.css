@@ -1,7 +1,6 @@
 .home-section {
   display: grid;
-  grid-template-columns: auto 300px;
-  gap: 0.5rem;
+  grid-template-columns: 1fr minmax(300px, 20%);
 }
 
 .home-section .websites {
@@ -11,6 +10,10 @@
 
 .skeletons {
   margin-top: 0.5rem;
+}
+
+.news-container {
+  margin: 0 1rem 1rem 1rem;
 }
 
 .top-search {

@@ -1,12 +1,10 @@
 nav {
   position: fixed;
   height: 100%;
-  width: 250px;
   border-right: 1px solid #c1c1c1;
-  padding: 6px 14px;
   z-index: 103;
   transition: 0.5s ease;
-  padding: 0 0.2rem;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

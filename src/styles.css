@@ -81,7 +81,6 @@ body.dark {
 }
 
 .card {
-  margin: 0.5rem 0;
   background: var(--bg-color-card);
   color: var(--font-color-primary);
   border-radius: 1rem;
@@ -236,11 +235,11 @@ section > .title-wrapper {
   width: 100%;
   height: auto;
   min-height: 70px;
-  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: var(--bg-blur);
+  padding: 0 1rem;
 }
 
 .title-wrapper > span.title-section {
@@ -271,9 +270,6 @@ section > .title-wrapper {
   transform: rotate(135deg);
 }
 
-.news-container {
-  margin: 0 1rem;
-}
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
   section > .title-wrapper {

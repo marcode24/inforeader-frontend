@@ -1,27 +1,29 @@
 .wrapper {
   max-width: 1280px;
   margin: 0 auto;
-}
-
-.wrapper.open .container {
-  margin-left: 80px;
+  display: grid;
+  grid-template-columns: minmax(80px, 20%) 1fr;
 }
 
 .wrapper .container {
   min-height: 100vh;
-  margin-left: 250px;
   width: auto;
+  padding: 0 1rem 0 0;
 }
 
 @media (max-width: 1280px) {
-  .wrapper .container {
-    margin-left: 78px;
+  .wrapper {
+    max-width: 100%;
+    grid-template-columns: 80px auto;
   }
 }
 
 @media (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: 0 100%;
+  }
   .wrapper .container {
-    margin-left: 0 !important;
     margin-bottom: 55px !important;
+    padding: 0;
   }
 }

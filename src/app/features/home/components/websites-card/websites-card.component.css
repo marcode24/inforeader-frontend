@@ -7,7 +7,7 @@
   max-width: 300px;
   display: flex;
   flex-direction: column;
-  transform: translate(0, 78px);
+  transform: translate(0, 70px);
 }
 
 .card.card-websites .card-title {
