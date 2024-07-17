@@ -16,6 +16,7 @@ export const getFeedMock = (): Feed => ({
   inUser: faker.datatype.boolean(),
   liked: faker.datatype.boolean(),
   likes: faker.datatype.number(),
+  views: faker.datatype.number(),
 });
 
 export const getFeedsMock = (size = 10): Feed[] => {

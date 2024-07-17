@@ -14,7 +14,7 @@
       <div class="details">
         <p class="date"> {{ feed.pubDate | date: 'dd-MM-yyyy' }} </p>
         <p class="bull">&bull;</p>
-        <p class="read"> {{ feed.readingTime! <= 0 ? 1 : feed.readingTime }} min read</p>
+        <p class="read"> {{ feed.readingTime! <= 0 || feed.readingTime === undefined ? 1 : feed.readingTime }} min read</p>
       </div>
       <div class="options">
         <div class="option default">
