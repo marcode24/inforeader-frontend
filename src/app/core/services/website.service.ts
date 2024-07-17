@@ -20,8 +20,9 @@ export class WebsiteService {
   constructor(private http: HttpClient,
     private authService: AuthService) { }
 
-  getWebsites(all = false, skip = 0, limit = 5): Observable<Website[]> {
-    const url = `${base_url}/website?all=${all}&limit=${limit}&skip=${skip}`;
+  getWebsites({count = false, all = false, skip = 0, limit = 5}): Observable<Website[]> {
+    const url =
+      `${base_url}/website?all=${all}&limit=${limit}&skip=${skip}&count=${count}`;
     return this.http.get<IResponseWebsite>(url).pipe(map(resp => {
       const { websites } = resp;
       const userActive = this.authService.getUserActive();

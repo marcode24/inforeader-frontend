@@ -9,26 +9,32 @@
   flex-direction: column;
 }
 
-.card.card-websites .card-title {
+.card-title,
+.card.card-websites .item {
+  padding: 0.6rem 1rem;
+}
+
+.card-title {
   font-size: 20px;
   font-weight: bold;
-  padding: 0.6rem 0.8rem;
 }
 
 .card.card-websites .item {
   display: flex;
-  padding: 0.5rem 0.8rem;
   gap: 10px;
   transition: 0.4s;
-  min-height: 65px;
+  min-height: 60px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .card.card-websites a.item {
   text-decoration: none;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--secondary-color);
+  border-top: var(--border);
+  justify-content: center;
 }
 
 .card.card-websites .item:last-child {
@@ -38,23 +44,32 @@
 .card.card-websites .item:hover,
 .card.card-websites .more:hover {
   background-color: var(--bg-hover);
-  cursor: pointer;
 }
 
-.card.card-websites .item .website-name {
+.website-name {
   flex-grow: 1;
   font-size: 16px;
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+.total-feeds {
+  font-size: 14px;
+  color: var(--font-color-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
 }
 
 .card.card-websites .item figure {
-  width: 3.5rem;
-  height: 3.5rem;
-  min-width: 3.5rem;
-  min-height: 3.5rem;
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
   border-radius: 50%;
 }
 
@@ -63,4 +78,10 @@
   width: 100%;
   height: 100%;
   border-radius: inherit;
+}
+
+.name-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }

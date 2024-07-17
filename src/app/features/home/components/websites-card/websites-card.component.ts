@@ -29,8 +29,7 @@ export class WebsitesCardComponent implements OnInit {
     }
     this.userService.modifyPreferences(id, 'subscription').subscribe(() => {
       this.websites.map(website => {
-        if( website._id === id)
-          website.inUser = !website.inUser;
+        if( website._id === id) website.inUser = !website.inUser;
       });
     });
   }

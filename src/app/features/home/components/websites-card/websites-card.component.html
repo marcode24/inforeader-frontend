@@ -4,7 +4,10 @@
     <figure *ngIf="website.image && website.image.length > 0">
       <img [src]="website.image" alt="website-image" onerror="this.src='/assets/images/not-found-image.jpg'">
     </figure>
-    <span class="website-name">{{website.name}}</span>
+    <div class="name-wrapper">
+      <span class="website-name">{{website.name}}</span>
+      <span class="total-feeds">{{website.feedCount}} {{ (website.feedCount && website.feedCount > 1) ? 'feeds' : 'feed' }}</span>
+    </div>
     <button [class.btn-following]="website.inUser" (click)="subscribeWebsite(website._id)"
       class="btn btn-primary btn-subscribe">{{ (website.inUser) ?
       'Following' : 'Subscribe' }}</button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable, Subject, debounceTime, forkJoin, map } from 'rxjs';
 
@@ -25,7 +26,8 @@ export class ExploreComponent implements OnInit {
 
   constructor(
     private websiteService: WebsiteService,
-    private feedService: FeedService
+    private feedService: FeedService,
+    private router: Router
   ) {
     this.loadingNews.pipe(debounceTime(2000)).subscribe(() => this.getDataInitial());
   }
@@ -41,7 +43,7 @@ export class ExploreComponent implements OnInit {
     this.isLoading = true;
     forkJoin({
       feeds: this.getFeeds(),
-      websites: this.websiteService.getWebsites(),
+      websites: this.websiteService.getWebsites({}),
     }).subscribe({
       next: ({ feeds, websites }) => {
         this.feeds = feeds;
@@ -70,6 +72,10 @@ export class ExploreComponent implements OnInit {
 
   get getSkip(): number {
     return this.skip;
+  }
+
+  search(value: string): void {
+    this.router.navigate(['/search'], { queryParams: { q: value } });
   }
 
 }

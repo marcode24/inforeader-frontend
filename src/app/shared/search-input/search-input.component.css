@@ -16,11 +16,12 @@ input.icon {
 }
 
 input.icon ~ i {
-  top: 15px;
+  top: 12px;
   left: 20px;
   position: absolute;
   color: #71767b;
   transition: 0.2s;
+  font-size: 22px;
 }
 
 input.icon:focus ~ i {
