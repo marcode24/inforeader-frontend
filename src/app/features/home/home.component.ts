@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     forkJoin({
       feeds: this.getFeeds(),
-      websites: this.websiteService.getWebsites(),
+      websites: this.websiteService.getWebsites({ count: true })
     }).subscribe({
       next: ({ feeds, websites }) => {
         this.feeds = feeds;

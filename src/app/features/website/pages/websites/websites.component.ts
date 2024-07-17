@@ -44,7 +44,7 @@ export class WebsitesComponent implements OnInit, OnDestroy {
   }
 
   getWebsites(): void {
-    this.websiteService.getWebsites(true).subscribe({
+    this.websiteService.getWebsites({ all: true }).subscribe({
       next: (websites) => {
         this.websites = websites;
       },

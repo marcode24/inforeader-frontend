@@ -2,7 +2,7 @@
   max-width: 1280px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(80px, 20%) 1fr;
+  grid-template-columns: minmax(80px, 260px) 1fr;
 }
 
 .wrapper .container {

@@ -13,5 +13,6 @@ export class Feed {
     public likes: number,
     public inUser?: boolean,
     public liked?: boolean,
+    public readingTime?: number,
   ) {}
 }

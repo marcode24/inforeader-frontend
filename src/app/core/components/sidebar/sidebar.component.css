@@ -8,6 +8,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  max-width: 260px;
 }
 
 nav .logo-details {
@@ -138,7 +139,7 @@ nav li i {
 }
 
 nav .profile {
-  width: 100%;
+  width: -webkit-fill-available;
   padding: 0.2rem;
   display: flex;
   flex-grow: 1;
@@ -274,6 +275,7 @@ nav .profile {
 
 @media (max-width: 768px) {
   nav {
+    max-width: 100%;
     width: 100vw !important;
     height: auto;
     bottom: 0;
