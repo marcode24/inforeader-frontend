@@ -4,6 +4,8 @@ import { environment } from 'environments/environment';
 
 import { Observable, map } from 'rxjs';
 
+import { OptionFeed } from '@customTypes/option.type';
+
 import { IResponseUser } from '@interfaces/response.interface';
 import { IUser } from '@interfaces/user.interface';
 
@@ -31,7 +33,7 @@ export class UserService {
     private authService: AuthService,
   ) { }
 
-  modifyPreferences(resourceID: string, filter: 'subscription' | 'read' | 'saved') {
+  modifyPreferences(resourceID: string, filter: OptionFeed) {
     const url = `${base_url}/user/${filter}/${resourceID}`;
     return this.http.patch(url, {}, this.headers);
   }

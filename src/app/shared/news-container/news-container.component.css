@@ -1,108 +1,253 @@
 .news {
   display: grid;
   grid-template-columns: repeat(1, 100%);
+  gap: 1rem;
 }
 
 .card.card-new {
   display: flex;
   align-items: flex-start;
-  min-height: 13rem;
-  height: 13rem;
-  max-height: 13rem;
+  flex-direction: column;
+  min-height: 10rem;
   transition: 0.5s;
-}
-
-.card.card.card-new:hover {
-  box-shadow: rgb(0 0 0 / 20%) 1px 1px 24px 1px;
-}
-
-.card.card-new figure {
-  height: 100%;
-  width: 16rem;
-}
-
-.card.card-new figure img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 0.6rem 0 0 0.6rem;
+  padding: 1rem;
+  gap: 1rem;
 }
 
 .card.card-new .card-body {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   height: 100%;
   width: 100%;
   flex-grow: 1;
-  padding: 1rem;
   gap: 10px;
 }
 
-.card.card-new .card-body .title-wrapper {
+.title-wrapper {
   display: flex;
-  justify-content: space-between;
-  font-size: 24px;
+  font-size: 22px;
   gap: 5px;
+  width: 100%;
+  flex-direction: column;
 }
 
-.card.card-new .card-body .title-wrapper .new-title {
+.title-wrapper .new-title {
   font-weight: 600;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box !important;
+  line-clamp: 3;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   white-space: normal;
-  height: 108px;
-  max-height: 108px;
+  height: 100px;
+  max-height: 100px;
+  transition: 0.2s ease-in-out;
+  text-wrap: balance;
 }
 
-.card.card-new .card-body .title-wrapper .new-title:hover {
+.title-wrapper .new-title:hover {
   text-decoration: underline;
+  transition: 0.2s ease-in-out;
 }
 
-.card.card-new .card-body .title-wrapper .new-title:hover,
-.card.card-new .card-body .title-wrapper .save {
+.title-wrapper .new-title:hover,
+.title-wrapper .save {
   cursor: pointer;
 }
 
-.card.card-new .card-body .title-wrapper .save {
+.title-wrapper .save {
   color: var(--primary-color);
   margin-top: 5px;
   z-index: 10;
 }
 
-.card.card.card-new .card-body .date {
-  flex-grow: 1;
+.title-wrapper .website-name {
+  font-size: 15px;
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+.card-body .details {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  font-size: 13px;
+  gap: 10px;
+  align-items: center;
   color: var(--font-color-secondary);
 }
 
-.card.card.card-new .card-body .date span {
+.details .date,
+.details .read {
+  font-size: 13px;
+}
+
+.details .bull {
+  font-size: 18px;
+}
+
+.details-wrapper .options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 0 0 0 auto;
+}
+
+.details-wrapper .options .separator {
+  height: 24px;
+  width: 0.1rem;
+  background: var(--separator-color);
+}
+
+.details-wrapper .options .option {
+  color: var(--font-color-secondary);
+  cursor: pointer;
+  padding: 3px 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  min-height: 29px;
+}
+
+.details-wrapper .option.default {
+  cursor: default !important;
+}
+
+.options .option:hover:has(.bx-like) {
+  background: #e66d9b2e;
+}
+
+.options .option:hover:has(.bx-bookmark) {
+  background: #0098fa2e;
+}
+
+.option .btn-icon {
+  color: var(--font-color-secondary);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+
+}
+
+.details-wrapper .options .option i {
+  font-size: 20px;
+}
+
+.bx-bookmark {
+  color: var(--primary-color);
+}
+
+.bx-like {
   color: var(--secondary-color);
-  margin-left: 4px;
-  font-weight: 500;
+}
+
+.bx-bookmark {
+  color: var(--primary-color);
+}
+
+.bx {
+  position: relative;
+  display: inline-block;
+}
+
+.bx-like::before,
+.bx-bookmark::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bx::after {
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bx-like::after {
+  content: "\ed5f";
+}
+
+.bx-bookmark::after {
+  content: "\ec31";
+}
+
+.option:hover:has(.bx-like) .bx-like::before,
+.option:hover:has(.bx-bookmark) .bx-bookmark::before {
+  opacity: 0;
+}
+
+.option:hover:has(.bx-like) .bx-like::after,
+.option:hover:has(.bx-bookmark) .bx-bookmark::after {
+  opacity: 1;
+}
+
+
+.details-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.details {
+  display: flex;
+  gap: 10px;
+  width: fit-content;
+  align-items: center;
+  color: var(--font-color-secondary);
+}
+
+
+figure {
+  height: 10.5rem;
+  width: 25rem;
+}
+
+figure img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.6rem;
 }
 
 @media (max-width: 480px) {
   .card.card-new {
-    flex-direction: column;
-    height: auto;
-    max-height: none;
+    padding: 0.6rem;
+    gap: 0.5rem;
   }
 
-  .card.card-new figure {
-    max-height: 9rem;
+  .card.card-new .card-body {
+    flex-direction: column-reverse;
+  }
+
+  .details-wrapper {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .details-wrapper .options {
+    align-self: center;
+    margin: 0;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  figure {
     width: 100%;
   }
 
-  .card.card-new figure img {
-    border-radius: 0.6rem 0.6rem 0 0;
-  }
-  .card.card-new .card-body .title-wrapper .new-title {
+  .title-wrapper .new-title {
     height: 90px;
     font-size: 20px;
   }

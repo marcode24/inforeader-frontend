@@ -25,7 +25,7 @@ body.dark {
   --bg-color: #000;
   --bg-color-card: #16181c;
   --bg-color-card-2: #000;
-  --bg-color-secondary: #e7e9ea;
+  --bg-color-secondary: #040a0d;
   --font-color-primary: #e7e9ea;
   --box-shadow: none;
   --bg-hover: rgb(231, 233, 234, 0.1);
@@ -34,15 +34,16 @@ body.dark {
   --bg-skeleton-2: #2e2c2c;
   --text-shadow-color: #000000;
   --bg-blur: hsla(0, 0%, 10%, 0.6);
-  --border-input: 1px solid #333639;
+  --border: 1px solid #3e3e3e;
+  --separator-color: #3e3e3e;
 }
 
 :root {
   --primary-color: #0098fa;
   --secondary-color: #e66d9b;
-  --bg-color: #f4faff;
-  --bg-color-card: #ffffff;
-  --bg-color-card-2: #ffffff;
+  --bg-color: #fafafa;
+  --bg-color-card: #fafafa;
+  --bg-color-card-2: #fafafa;
   --bg-color-scroll: #a5a5a5;
   --bg-color-secondary: #262626;
   --bg-button-follow: transparent;
@@ -54,7 +55,8 @@ body.dark {
   --bg-skeleton-2: #cdcdcd;
   --text-shadow-color: #e6e6e6;
   --bg-blur: hsla(0, 0%, 100%, 0.8);
-  --border-input: none;
+  --border: 1px solid #c1c1c1;
+  --separator-color: #c1c1c1;
 }
 
 ::-webkit-scrollbar {
@@ -81,11 +83,10 @@ body.dark {
 }
 
 .card {
-  margin: 0.5rem 0;
   background: var(--bg-color-card);
   color: var(--font-color-primary);
   border-radius: 1rem;
-  box-shadow: var(--box-shadow);
+  border: var(--border);
 }
 
 .btn {
@@ -235,11 +236,11 @@ section > .title-wrapper {
   width: 100%;
   height: auto;
   min-height: 70px;
-  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: var(--bg-blur);
+  padding: 0 1rem;
 }
 
 .title-wrapper > span.title-section {
@@ -270,9 +271,6 @@ section > .title-wrapper {
   transform: rotate(135deg);
 }
 
-.news-container {
-  margin: 0 1rem;
-}
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
   section > .title-wrapper {

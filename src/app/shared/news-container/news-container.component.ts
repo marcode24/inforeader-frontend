@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { Subject, debounceTime } from 'rxjs';
 
+import { OptionFeed } from '@customTypes/option.type';
+
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
 
@@ -18,7 +20,7 @@ export class NewsContainerComponent implements OnInit {
   @Input() feeds: Feed[] = [];
   @Input() recentFeed: Feed;
   @Output() moreItems: EventEmitter<boolean> = new EventEmitter();
-  private saveFeedSub: Subject<string> = new Subject();
+  private saveFeedSub: Subject<{id: string, option: OptionFeed}> = new Subject();
 
   constructor(
     private router: Router,
@@ -26,8 +28,8 @@ export class NewsContainerComponent implements OnInit {
     private userService: UserService,
   ) {
      this.saveFeedSub.pipe(
-      debounceTime(250))
-      .subscribe((idFeed) => this.updatePreferences(idFeed)
+      debounceTime(300))
+      .subscribe(({id, option}) => this.updatePreferences(id, option)
     );
   }
 
@@ -39,30 +41,38 @@ export class NewsContainerComponent implements OnInit {
     this.router.navigate([`/feed/${id}`]);
   }
 
-  saveFeed(id: string) {
+  modifyPreference(id: string, option: OptionFeed): void {
     if(!this.isAuthenticated) {
       return this.authService.showModalAuth('init');
     }
-    this.saveFeedSub.next(id);
+    this.saveFeedSub.next({id, option});
   }
 
-  updatePreferences(idFeed: string): void {
-    this.userService.modifyPreferences(idFeed, 'saved').subscribe(() => {
+  updatePreferences(idFeed: string, option: OptionFeed): void {
+    this.userService.modifyPreferences(idFeed, option).subscribe(() => {
       this.feeds.map(feed => {
-        if(feed._id === idFeed) {
+        if(option === 'saved' && feed._id === idFeed) {
           feed.inUser = !feed.inUser;
+        }
+        if(option === 'liked' && feed._id === idFeed) {
+          feed.liked = !feed.liked;
+          feed.liked ? feed.likes++ : feed.likes--;
         }
       });
     });
   }
 
-  changeStyle(element: HTMLElement, change: boolean): void {
-    if(change) element.classList.add('bxs-bookmark');
-    else element.classList.remove('bxs-bookmark');
+  changeStyle(element: HTMLElement, strClass: string, change: boolean): void {
+    if(change) {
+      element.classList.add(strClass);
+      element.style.transition = 'all 0.5s';
+    }
+    else {
+      element.classList.remove(strClass);
+    }
   }
 
   onScroll(): void {
     this.moreItems.emit(true);
   }
-
 }

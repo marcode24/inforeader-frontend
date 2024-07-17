@@ -4,16 +4,15 @@
 
 input.icon {
   background: var(--bg-color-card);
-  border: var(--border-input);
+  border: var(--border);
   border-radius: 30px;
   height: 45px;
   width: 100%;
   min-width: 0;
-  padding: 10px 5px 10px 50px;
+  padding: 10px 20px 10px 50px;
   color: var(--font-color-primary);
   font-size: 16px;
-  transition: 0.2s;
-  box-shadow: var(--box-shadow);
+  transition: 0.25s ease;
 }
 
 input.icon ~ i {
@@ -27,3 +26,4 @@ input.icon ~ i {
 input.icon:focus ~ i {
   color: var(--primary-color);
 }
+

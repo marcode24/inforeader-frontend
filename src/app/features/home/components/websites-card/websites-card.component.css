@@ -1,13 +1,12 @@
+
 .card.card-websites {
   cursor: default;
   opacity: 1;
   margin: 0;
   padding: 0 !important;
-  position: fixed;
   max-width: 300px;
   display: flex;
   flex-direction: column;
-  transform: translate(0, 78px);
 }
 
 .card.card-websites .card-title {
