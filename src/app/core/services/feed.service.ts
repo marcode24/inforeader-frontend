@@ -67,15 +67,16 @@ export class FeedService {
 
   public mapInUserResource(feeds: Feed[] | Feed): Feed[] | Feed {
     const userActive = this.authService.getUserActive();
-    if(userActive) {
-      const { savedFeeds } = userActive;
-      if(Array.isArray(feeds)) {
-        feeds.map(feed => feed.inUser = savedFeeds?.includes(feed._id));
-      } else {
-        feeds.inUser = savedFeeds?.includes(feeds._id);
-      }
+    if (userActive) {
+      const { savedFeeds, likedFeeds } = userActive;
+      const mapFeed = (feed: Feed): Feed => {
+          feed.inUser = savedFeeds?.includes(feed._id) || false;
+          feed.liked = likedFeeds?.includes(feed._id) || false;
+          feed.likes = feed.likes ?? 0;
+          return feed;
+      };
+      Array.isArray(feeds) ? feeds.forEach(mapFeed) : feeds = mapFeed(feeds);
     }
     return feeds;
   }
-
 }

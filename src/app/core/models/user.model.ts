@@ -11,5 +11,6 @@ export class User {
     public subscriptions?: string[],
     public readFeeds?: string[],
     public savedFeeds?: string[],
+    public likedFeeds?: string[],
   ) {}
 }

@@ -56,8 +56,9 @@ export class NewsContainerComponent implements OnInit {
         }
         if(option === 'liked' && feed._id === idFeed) {
           feed.liked = !feed.liked;
-          feed.liked ? feed.likes++ : feed.likes--;
+          feed.likes += feed.liked ? 1 : -1;
         }
+        return feed;
       });
     });
   }
