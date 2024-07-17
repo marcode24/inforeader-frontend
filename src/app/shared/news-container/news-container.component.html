@@ -19,7 +19,7 @@
       <div class="options">
         <div class="option default">
           <i class="bx bx-show"></i>
-          <span> {{ 10 }} </span>
+          <span *ngIf="feed.views || feed.views > 0"> {{ feed.views }} </span>
         </div>
         <div class="separator"></div>
         <div class="option" (click)="modifyPreference(feed._id, 'liked')">

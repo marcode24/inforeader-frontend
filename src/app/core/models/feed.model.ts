@@ -11,6 +11,7 @@ export class Feed {
     public image: string,
     public website: Website,
     public likes: number,
+    public views: number,
     public inUser?: boolean,
     public liked?: boolean,
     public readingTime?: number,
